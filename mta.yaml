@@ -1,0 +1,46 @@
+ID: flyhigh
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: flyhigh_ui
+    type: html5
+    path: flyhigh_ui
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_flyhigh
+      - name: dest_flyhigh
+      - name: flyhigh_node_api
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          strictSSL: false
+          name: flyhigh_node_api
+          url: '~{url}'
+  - name: flyhigh_node
+    type: nodejs
+    path: flyhigh_node
+    provides:
+      - name: flyhigh_node_api
+        properties:
+          url: '${default-url}'
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: uaa_flyhigh
+resources:
+  - name: uaa_flyhigh
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_flyhigh
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
