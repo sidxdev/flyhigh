@@ -32,6 +32,15 @@ modules:
       memory: 256M
     requires:
       - name: uaa_flyhigh
+      - name: hdi_flyhigh_db
+  - name: flyhigh_db
+    type: hdb
+    path: flyhigh_db
+    requires:
+      - name: hdi_flyhigh_db
+    parameters:
+      disk-quota: 512M
+      memory: 512M
 resources:
   - name: uaa_flyhigh
     parameters:
@@ -44,3 +53,7 @@ resources:
       service-plan: lite
       service: destination
     type: org.cloudfoundry.managed-service
+  - name: hdi_flyhigh_db
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container

@@ -1,0 +1,73 @@
+context model {
+    type UUID : String(36); // Generated through app
+    type Currency : String(3);
+    type Amount : Decimal(15, 2);
+    type IATA : String(3);
+    type Email : String(30);
+    type Gate : String(3);
+    type FlightOperator : String(2);
+    type FlightNumber : Integer;
+    type SKU : String(10);
+
+    entity Customer {
+        key id           : UUID  not null;
+            email        : Email not null;
+            prefCurrency : Currency null;
+            passport     : String(10) null;
+    };
+
+    entity Vendor {
+        key id       : UUID                                  not null;
+            email    : Email                                 not null;
+            location : association[1, 1] to Airport { iata } not null;
+    };
+
+    entity Catalog {
+        key id            : UUID                               not null;
+            model         : SKU                                not null;
+            category      : SKU;
+            vendor        : association[1, 1] to Vendor { id } not null;
+            retailPrice   : Amount                             not null;
+            localCurrency : Currency                           not null;
+            description   : String(50);
+    };
+
+    entity FlightItinerary {
+        customer : association[1, 1] to Customer { id } not null;
+        flight   : association[1, 1] to Flight { id }   not null;
+    };
+
+    entity Discount {
+        key id                 : UUID                                 not null;
+            item               : association[1, 1] to Catalog { id }  not null;
+            startdate          : UTCDateTime                          not null;
+            enddate            : UTCDateTime                          not null;
+            discountpercentage : BinaryFloat                          default 0;
+            discountabsolute   : Amount                               default 0;
+            customerSpecific   : association[1, 1] to Customer { id };
+    }
+
+    // Master Data Tables
+    entity Airport {
+        key iata : IATA       not null;
+            name : String(30) not null;
+    };
+
+    entity CurrencyConversion {
+        key fromcurrency : Currency    not null;
+        key tocurrency   : Currency    not null;
+            factor       : BinaryFloat not null;
+    };
+
+    entity Flight {
+        key id          : UUID                                  not null;
+            operator    : FlightOperator                        not null;
+            flighttnum  : FlightNumber                          not null;
+            origin      : association[1, 1] to Airport { iata } not null;
+            destination : association[1, 1] to Airport { iata } not null;
+            depdatetime : UTCDateTime                           not null;
+            arrdatetime : UTCDateTime                           not null;
+            depgate     : Gate;
+            arrgate     : Gate;
+    };
+};

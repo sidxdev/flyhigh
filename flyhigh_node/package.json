@@ -5,10 +5,11 @@
 		"jest-junit": "^5.2.0"
 	},
 	"dependencies": {
-		"@sap/xsenv": "^1.2.9",
-		"@sap/xssec": "^2.1.15",
-		"express": "^4.16.3",
-		"passport": "^0.4.0"
+		"@sap/xsenv": "1.2.9",
+		"@sap/xssec": "2.1.15",
+		"express": "4.16.3",
+		"passport": "0.4.0",
+		"uuid": "3.3.3"
 	},
 	"files": [],
 	"main": "server.js",
