@@ -5,12 +5,14 @@
 		"logoutEndpoint": "/do/logout"
 	},
 	"routes": [{
-		"source": "^/flyhigh_ui/(.*)$",
+		"source": "^/webapp/(.*)$",
 		"target": "$1",
-		"localDir": "webapp"
+		"localDir": "webapp",
+		"scope": "$XSAPPNAME.USER"
 	}, {
 		"source": "/api",
 		"authenticationType": "xsuaa",
-		"destination": "flyhigh_node_api"
+		"destination": "flyhigh_node_api",
+		"scope": "$XSAPPNAME.USER"
 	}]
 }
