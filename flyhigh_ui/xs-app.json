@@ -7,12 +7,12 @@
 	"routes": [{
 		"source": "^/webapp/(.*)$",
 		"target": "$1",
-		"localDir": "webapp",
-		"scope": "$XSAPPNAME.USER"
+		"localDir": "webapp"
+
 	}, {
 		"source": "/api",
 		"authenticationType": "xsuaa",
-		"destination": "flyhigh_node_api",
-		"scope": "$XSAPPNAME.USER"
+		"destination": "flyhigh_node_api"
+
 	}]
 }

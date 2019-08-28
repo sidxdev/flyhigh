@@ -6,7 +6,7 @@ modules:
     type: html5
     path: flyhigh_ui
     parameters:
-      disk-quota: 256M
+      disk-quota: 512M
       memory: 256M
     build-parameters:
       builder: grunt
@@ -28,7 +28,7 @@ modules:
         properties:
           url: '${default-url}'
     parameters:
-      disk-quota: 256M
+      disk-quota: 512M
       memory: 256M
     requires:
       - name: uaa_flyhigh
@@ -39,7 +39,7 @@ modules:
     requires:
       - name: hdi_flyhigh_db
     parameters:
-      disk-quota: 512M
+      disk-quota: 1024M
       memory: 512M
 resources:
   - name: uaa_flyhigh

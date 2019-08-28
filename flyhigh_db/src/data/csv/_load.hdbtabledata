@@ -1,0 +1,37 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"target_table": "model.Airport",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "airport.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		}
+	}, {
+		"target_table": "model.CurrencyConversion",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "currency.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		}
+	}, {
+		"target_table": "model.Flight",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "flight.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		}
+	}]
+}

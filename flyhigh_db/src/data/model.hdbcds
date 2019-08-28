@@ -9,6 +9,11 @@ context model {
     type FlightNumber : Integer;
     type SKU : String(10);
 
+    entity Role {
+        key email : Email;
+        key scope : String(20);
+    };
+
     entity Customer {
         key id           : UUID  not null;
             email        : Email not null;
@@ -23,13 +28,12 @@ context model {
     };
 
     entity Catalog {
-        key id            : UUID                               not null;
-            model         : SKU                                not null;
-            category      : SKU;
-            vendor        : association[1, 1] to Vendor { id } not null;
-            retailPrice   : Amount                             not null;
-            localCurrency : Currency                           not null;
-            description   : String(50);
+        key id          : UUID                               not null;
+            model       : SKU                                not null;
+            category    : SKU;
+            vendor      : association[1, 1] to Vendor { id } not null;
+            retailPrice : Amount                             not null;
+            description : String(50);
     };
 
     entity FlightItinerary {
@@ -38,19 +42,20 @@ context model {
     };
 
     entity Discount {
-        key id                 : UUID                                 not null;
-            item               : association[1, 1] to Catalog { id }  not null;
-            startdate          : UTCDateTime                          not null;
-            enddate            : UTCDateTime                          not null;
-            discountpercentage : BinaryFloat                          default 0;
-            discountabsolute   : Amount                               default 0;
+        key id                 : UUID        not null;
+            item               : association[1, 1] to Catalog { id };
+            startdate          : UTCDateTime not null;
+            enddate            : UTCDateTime not null;
+            discountpercentage : BinaryFloat default 0;
+            discountabsolute   : Amount      default 0;
             customerSpecific   : association[1, 1] to Customer { id };
     }
 
     // Master Data Tables
     entity Airport {
-        key iata : IATA       not null;
-            name : String(30) not null;
+        key iata          : IATA        not null;
+            name          : String(100) not null;
+            localcurrency : Currency    not null;
     };
 
     entity CurrencyConversion {
@@ -70,4 +75,25 @@ context model {
             depgate     : Gate;
             arrgate     : Gate;
     };
+
+    view CatalogDiscount as
+        select from     Catalog as C
+        left outer join Discount as D on
+            C."id" = D."item"."id"
+        {
+            C.id                             as catalogid,
+            C.model,
+            C.category,
+            C.vendor.id                      as vendorid,
+            C.vendor.location.iata,
+            C.vendor.location.localcurrency,
+            C.retailPrice,
+            C.description,
+            D.id                             as discountid,
+            D.startdate,
+            D.enddate,
+            D.discountpercentage,
+            D.discountabsolute,
+            D.customerSpecific.id            as customerid
+        };
 };
