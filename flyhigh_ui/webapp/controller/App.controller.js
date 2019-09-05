@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("flyhigh.flyhigh_ui.controller.AppView", {
+	return Controller.extend("flyhigh.flyhigh_ui.controller.App", {
 		onInit: function () {
 
 		}

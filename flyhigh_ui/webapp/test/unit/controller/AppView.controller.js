@@ -1,13 +1,13 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"flyhigh/flyhigh_ui/controller/AppView.controller"
+	"flyhigh/flyhigh_ui/controller/App.controller"
 ], function (Controller) {
 	"use strict";
 
-	QUnit.module("AppView Controller");
+	QUnit.module("App Controller");
 
-	QUnit.test("I should test the AppView controller", function (assert) {
+	QUnit.test("I should test the App controller", function (assert) {
 		var oAppController = new Controller();
 		oAppController.onInit();
 		assert.ok(oAppController);

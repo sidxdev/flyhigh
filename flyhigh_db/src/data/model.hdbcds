@@ -96,4 +96,19 @@ context model {
             D.discountabsolute,
             D.customerSpecific.id            as customerid
         };
+
+    view PassengerList as
+        select from FlightItinerary
+        {
+            customer.id             as customerid,
+            flight.id               as flightid,
+            flight.operator,
+            flight.flighttnum,
+            flight.origin.iata      as origin,
+            flight.destination.iata as destination,
+            flight.depdatetime,
+            flight.arrdatetime,
+            flight.depgate,
+            flight.arrgate
+        };
 };

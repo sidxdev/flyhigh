@@ -35,10 +35,10 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "flyhigh.flyhigh_ui.view.AppView",
+			"viewName": "flyhigh.flyhigh_ui.view.App",
 			"type": "XML",
 			"async": true,
-			"id": "AppView"
+			"id": "App"
 		},
 		"dependencies": {
 			"minUI5Version": "1.65.6",
@@ -76,17 +76,17 @@
 				"clearControlAggregation": false
 			},
 			"routes": [{
-				"name": "RouteAppView",
-				"pattern": "RouteAppView",
-				"target": ["TargetAppView"]
+				"name": "RouteApp",
+				"pattern": "RouteApp",
+				"target": ["TargetApp"]
 			}],
 			"targets": {
-				"TargetAppView": {
+				"TargetApp": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewId": "AppView",
-					"viewName": "AppView"
+					"viewId": "App",
+					"viewName": "App"
 				}
 			}
 		}
