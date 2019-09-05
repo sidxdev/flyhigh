@@ -1,1 +1,4 @@
 /* Enter your custom styles here */
+.fullWidth {
+	width: -webkit-fill-available !important;
+}

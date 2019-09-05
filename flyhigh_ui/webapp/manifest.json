@@ -14,7 +14,6 @@
 			"version": "1.40.12"
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
@@ -31,7 +30,6 @@
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
@@ -78,7 +76,27 @@
 			"routes": [{
 				"name": "RouteApp",
 				"pattern": "RouteApp",
-				"target": ["TargetApp"]
+				"target": [
+					"TargetApp"
+				]
+			}, {
+				"name": "Unauthorized",
+				"pattern": "Unauthorized",
+				"target": [
+					"Unauthorized"
+				]
+			}, {
+				"name": "Customer",
+				"pattern": "Customer",
+				"target": [
+					"Customer"
+				]
+			}, {
+				"name": "Vendor",
+				"pattern": "Vendor",
+				"target": [
+					"Vendor"
+				]
 			}],
 			"targets": {
 				"TargetApp": {
@@ -87,6 +105,18 @@
 					"clearControlAggregation": false,
 					"viewId": "App",
 					"viewName": "App"
+				},
+				"Unauthorized": {
+					"viewType": "XML",
+					"viewName": "Unauthorized"
+				},
+				"Customer": {
+					"viewType": "XML",
+					"viewName": "Customer"
+				},
+				"Vendor": {
+					"viewType": "XML",
+					"viewName": "Vendor"
 				}
 			}
 		}

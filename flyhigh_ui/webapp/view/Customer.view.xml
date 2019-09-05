@@ -1,0 +1,6 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flyhigh.flyhigh_ui.controller.Customer"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Customer">
+		<content></content>
+	</Page>
+</mvc:View>

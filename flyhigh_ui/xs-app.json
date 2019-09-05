@@ -12,6 +12,7 @@
 	}, {
 		"source": "/api",
 		"authenticationType": "xsuaa",
+		"csrfProtection": false,
 		"destination": "flyhigh_node_api"
 
 	}]

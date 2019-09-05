@@ -1,11 +1,18 @@
-<mvc:View controllerName="flyhigh.flyhigh_ui.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<Shell id="shell">
-		<App id="app">
-			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content></content>
-				</Page>
-			</pages>
-		</App>
-	</Shell>
+<mvc:View controllerName="flyhigh.flyhigh_ui.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:c="flyhigh.flyhigh_ui.util">
+	<App id="app">
+		<Page id="page" title="{i18n>title}">
+			<content>
+				<l:Grid position="Center" defaultSpan="XL4 L4 M4 S12">
+					<c:VBSpan span="3"/>
+					<c:VBSpan span="6">
+						<Title id="welcomeTitle"/>
+						<GenericTile header="Customer" class="sapUiTinyMargin fullWidth" subheader="Start your journey as a Customer" press="onPressCustomer"/>
+						<GenericTile header="Vendor" class="sapUiTinyMargin fullWidth" subheader="Start your journey as a Vendor" press="onPressVendor"/>
+					</c:VBSpan>
+					<c:VBSpan/>
+				</l:Grid>
+			</content>
+		</Page>
+	</App>
 </mvc:View>
