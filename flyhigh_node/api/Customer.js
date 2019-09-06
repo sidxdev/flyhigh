@@ -4,11 +4,9 @@ const dbHelper = require("../lib/db");
 // Get own information
 router.get("/self", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "SELECT * FROM \"model.Customer\" WHERE \"id\" = ?", [user.id]);
-	}).then(data => {
 		res.status(200).send({
-			data: data, 
-			user: req.authInfo.userInfo
+			data: user,
+			userInfo: req.authInfo.userInfo
 		});
 	});
 });

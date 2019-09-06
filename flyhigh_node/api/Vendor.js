@@ -5,10 +5,8 @@ const uuidv4 = require("uuid/v4");
 // Get own information
 router.get("/self", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "SELECT * FROM \"model.Vendor\" WHERE \"id\" = ?", [user.id]);
-	}).then(data => {
 		res.status(200).send({
-			data: data,
+			data: user,
 			userInfo: req.authInfo.userInfo
 		});
 	});
@@ -17,7 +15,7 @@ router.get("/self", (req, res) => {
 // Get own catalog
 router.get("/catalog", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "SELECT * FROM \"model.Catalog\" WHERE \"vendor\" = ?", [user.id]);
+		return dbHelper.query(req.db, "SELECT * FROM \"model.CatalogDiscount\" WHERE \"vendorid\" = ?", [user.id]);
 	}).then(data => {
 		res.status(200).send({
 			data: data

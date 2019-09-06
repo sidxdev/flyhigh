@@ -17,7 +17,7 @@ sap.ui.define([
 
 			// Initialize data
 			Service.get("/api/vendor/self").then(function (oData) {
-				oWelcomeTitle.setText("Welcome " + oData.userInfo.givenName + "!");
+				oWelcomeTitle.setText(`Welcome ${oData.userInfo.givenName}! You are at ${oData.data['location.iata']}`);
 			}).catch(function () {})
 
 			Service.get("/api/vendor/catalog").then(function (oData) {

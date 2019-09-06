@@ -25,7 +25,17 @@ HDI.dbCheck = function (req, res) {
 };
 
 HDI.getUserFromEmail = function (db, table, email) {
-	return HDI.query(db, "SELECT SINGLE * FROM \"model." + table + "\" WHERE \"email\" = ?", [email]);
+	return new Promise((resolve, reject) => {
+		HDI.query(db, "SELECT * FROM \"model." + table + "\" WHERE \"email\" = ?", [email]).then(data => {
+			if(data.length !== 0) {
+				resolve(data[0]);
+			} else {
+				reject({error: "No user found."});
+			}
+		}).catch(() => {
+			reject({error: "No user found."});
+		});	
+	}); 
 };
 
 module.exports = HDI;
