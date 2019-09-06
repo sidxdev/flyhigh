@@ -7,9 +7,7 @@ sap.ui.define([
 	return Controller.extend("flyhigh.flyhigh_ui.controller.Vendor", {
 
 		onInit: function () {
-			Navigator.scopeCheck(this, "VENDOR").then(function (oUser) {
-
-			}).catch(function () {});
+			
 		}
 
 	});

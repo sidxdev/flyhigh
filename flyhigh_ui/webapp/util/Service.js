@@ -38,7 +38,7 @@ sap.ui.define([
 			}
 	};
 
-	Service.register = function (scope) {
+	Service.register = function (scope, params) {
 		return new Promise(function (resolve, reject) {
 			$.ajax({
 				url: "/api/register",
@@ -46,7 +46,8 @@ sap.ui.define([
 				dataType: "json",
 				contentType: "application/json",
 				data: JSON.stringify({
-					scope: scope
+					scope: scope,
+					...params
 				}),
 				processData: false,
 				success: resolve,

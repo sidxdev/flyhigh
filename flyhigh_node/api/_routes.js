@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const uuidv4 = require('uuid/v4');
 const auth = require("../lib/auth");
 const dbHelper = require("../lib/db");
 
@@ -22,16 +23,24 @@ router.get("/flights", (req, res) => {
 
 router.post("/register", (req, res) => {
 	let scope = req.body.scope;
-	if (scope !== "CUSTOMER" || scope !== "VENDOR") {
-		return res.status(200).send({
+	let uuid = uuidv4();
+	if (scope === "CUSTOMER" && req.body.prefCurrency) {
+		dbHelper.query(req.db, "CALL \"procedure::createCustomer\" (?, ?, ?)", [uuid, req.authInfo.userInfo.email, req.body.prefCurrency]).then(() => {
+			res.status(201).send({});
+		}).catch(function (err) {
+			res.status(500).send(err);
+		});
+	} else if (scope === "VENDOR" && req.body.iata) {
+		dbHelper.query(req.db, "CALL \"procedure::createVendor\" (?, ?, ?)", [uuid, req.authInfo.userInfo.email, req.body.iata]).then(() => {
+			res.status(201).send({});
+		}).catch(function (err) {
+			res.status(500).send(err);
+		});
+	} else {
+		return res.status(400).send({
 			error: "Must request 'CUSTOMER' or 'VENDOR' scope."
 		});
 	}
-	dbHelper.query(req.db, "INSERT INTO \"model.Role\" VALUES(?,?)", [req.authInfo.userInfo.email, scope]).then(() => {
-		res.status(201).send({});
-	}).catch(function (err) {
-		res.status(500).send(err);
-	});
 });
 
 // Scoped API Routes

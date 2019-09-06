@@ -7,8 +7,16 @@
 					<c:VBSpan span="3"/>
 					<c:VBSpan span="6">
 						<Title id="welcomeTitle"/>
-						<GenericTile header="Customer" class="sapUiTinyMargin fullWidth" subheader="Start your journey as a Customer" press="onPressCustomer"/>
-						<GenericTile header="Vendor" class="sapUiTinyMargin fullWidth" subheader="Start your journey as a Vendor" press="onPressVendor"/>
+						<GenericTile header="Customer" class="sapUiTinyMargin fullWidth"  subheader="Start your journey as a Customer" press="onPressCustomer">
+							<TileContent>
+								<Label text="Default Currency INR"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile header="Vendor" class="sapUiTinyMargin fullWidth" subheader="Start your journey as a Vendor" press="onPressVendor">
+							<TileContent>
+								<Label text="Default Location DEL"/>
+							</TileContent>
+						</GenericTile>
 					</c:VBSpan>
 					<c:VBSpan/>
 				</l:Grid>

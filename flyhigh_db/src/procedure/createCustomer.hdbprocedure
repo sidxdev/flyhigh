@@ -1,0 +1,12 @@
+PROCEDURE "procedure::createCustomer" (
+   IN ID NVARCHAR(36),
+   IN EMAIL NVARCHAR(30),
+   IN PREFCURR NVARCHAR(3)
+) 
+LANGUAGE SQLSCRIPT 
+SQL SECURITY INVOKER 
+AS 
+BEGIN 
+   INSERT INTO "model.Role" VALUES(EMAIL, 'CUSTOMER');
+   INSERT INTO "model.Customer"("id","email", "prefCurrency") VALUES(ID, EMAIL, PREFCURR);
+END;
