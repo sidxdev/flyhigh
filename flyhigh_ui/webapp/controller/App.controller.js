@@ -12,17 +12,17 @@ sap.ui.define([
 	
 	return Controller.extend("flyhigh.flyhigh_ui.controller.App", {
 		onInit: function () {
-			// that = this;
-			// var oWelcomeTitle = this.getView().byId("welcomeTitle");
-			// Navigator.scopeCheck(this, "USER").then(function (oUser) {
-			// 	if (Service.containsScope("CUSTOMER", oUser.scopes)) {
-			// 		Navigator.navigate(that, "Customer");
-			// 	} else if (Service.containsScope("VENDOR", oUser.scopes)) {
-			// 		Navigator.navigate(that, "Vendor");
-			// 	} else {
-			// 		oWelcomeTitle.setText("Welcome " + oUser.userInfo.givenName + "!");
-			// 	}
-			// }).catch(function () {});
+			that = this;
+			var oWelcomeTitle = this.getView().byId("welcomeTitle");
+			Navigator.scopeCheck(this, "USER").then(function (oUser) {
+				if (Service.containsScope("CUSTOMER", oUser.scopes)) {
+					Navigator.navigate(that, "Customer");
+				} else if (Service.containsScope("VENDOR", oUser.scopes)) {
+					Navigator.navigate(that, "Vendor");
+				} else {
+					oWelcomeTitle.setText("Welcome " + oUser.userInfo.givenName + "!");
+				}
+			}).catch(function () {});
 		},
 
 		onPressCustomer: function (oEvent) {
