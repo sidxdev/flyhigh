@@ -13,14 +13,16 @@ sap.ui.define([
 	return Controller.extend("flyhigh.flyhigh_ui.controller.App", {
 		onInit: function () {
 			that = this;
-			var oWelcomeTitle = this.getView().byId("welcomeTitle");
-			Navigator.scopeCheck(this, "USER").then(function (oUser) {
+			var oWelcomeTitle = that.getView().byId("welcomeTitle");
+			var oGrid = that.getView().byId("gridContainer");
+			Navigator.scopeCheck(that, "USER").then(function (oUser) {
 				if (Service.containsScope("CUSTOMER", oUser.scopes)) {
 					Navigator.navigate(that, "Customer");
 				} else if (Service.containsScope("VENDOR", oUser.scopes)) {
 					Navigator.navigate(that, "Vendor");
 				} else {
 					oWelcomeTitle.setText("Welcome " + oUser.userInfo.givenName + "!");
+					oGrid.setVisible(true);
 				}
 			}).catch(function () {});
 		},
@@ -29,8 +31,8 @@ sap.ui.define([
 			oBusyDialog.open();
 			Service.register("CUSTOMER", {prefCurrency: "INR"}).then(function () {
 				Navigator.navigate(that, "Customer");
-			}).catch(function (sError) {
-				MessageBox.show(sError);
+			}).catch(function (oError) {
+				MessageBox.show(oError.error);
 			}).finally(function () {
 				oBusyDialog.close();
 			});
@@ -40,8 +42,8 @@ sap.ui.define([
 			oBusyDialog.open();
 			Service.register("VENDOR", {iata: "DEL"}).then(function () {
 				Navigator.navigate(that, "Vendor");
-			}).catch(function (sError) {
-				MessageBox.show(sError);
+			}).catch(function (oError) {
+				MessageBox.show(oError.error);
 			}).finally(function () {
 				oBusyDialog.close();
 			});

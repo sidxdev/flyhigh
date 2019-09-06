@@ -24,8 +24,8 @@ HDI.dbCheck = function (req, res) {
 	});
 };
 
-HDI.getUserFromEmail = function (db, email) {
-	return HDI.query(db, "SELECT SINGLE * FROM \"model.Customer\" WHERE \"email\" = ?", [email]);
+HDI.getUserFromEmail = function (db, table, email) {
+	return HDI.query(db, "SELECT SINGLE * FROM \"model." + table + "\" WHERE \"email\" = ?", [email]);
 };
 
 module.exports = HDI;

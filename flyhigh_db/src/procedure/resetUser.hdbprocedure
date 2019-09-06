@@ -1,0 +1,11 @@
+PROCEDURE "procedure::resetUser" (
+   IN EMAIL NVARCHAR(30)
+) 
+LANGUAGE SQLSCRIPT 
+SQL SECURITY INVOKER 
+AS 
+BEGIN 
+   DELETE FROM "model.Role" WHERE "email" = EMAIL AND "scope" <> 'USER';
+   DELETE FROM "model.Vendor" WHERE "email" = EMAIL;
+   DELETE FROM "model.Customer" WHERE "email" = EMAIL;
+END;

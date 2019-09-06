@@ -9,6 +9,17 @@ sap.ui.define([
 		return "flyhigh.flyhigh_ui.util.Service";
 	};
 
+	Service.get = function (url) {
+		return new Promise(function (resolve, reject) {
+			$.ajax({
+				url: url,
+				type: "GET",
+				success: resolve,
+				error: reject
+			});
+		});
+	};
+
 	Service.checkAuth = function (scope) {
 		return new Promise(function (resolve, reject) {
 			$.ajax({
@@ -32,10 +43,10 @@ sap.ui.define([
 		if (aScopes.findIndex(function (e) {
 				return e === sScope;
 			}) !== -1) {
-				return true;
-			} else {
-				return false;
-			}
+			return true;
+		} else {
+			return false;
+		}
 	};
 
 	Service.register = function (scope, params) {
