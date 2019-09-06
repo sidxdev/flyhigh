@@ -11,13 +11,13 @@
 							<Column hAlign="Center"><Text text="Model"/></Column>
 							<Column hAlign="Center"><Text text="Category"/></Column>
 							<Column hAlign="Center"><Text text="Price"/></Column>
-							<Column hAlign="Center"><Text text="Description"/></Column>
+							<Column hAlign="Center"><Text text="Desc."/></Column>
 						</columns>
 						<items>
 							<ColumnListItem>
 								<cells>
 									<Text text="{model}"/>
-									<Text text="{catalog}"/>
+									<Text text="{category}"/>
 									<Text text="{retailPrice}"/>
 									<Text text="{description}"/>
 								</cells>
