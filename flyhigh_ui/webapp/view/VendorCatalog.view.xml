@@ -1,0 +1,31 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flyhigh.flyhigh_ui.controller.VendorCatalog"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+		<Page title="Vendor - Catalog" showNavButton="true">
+		<content>
+			<l:Grid position="Center" id="gridContainer" defaultSpan="XL4 L4 M4 S12" visible="true">
+				<c:VBSpan span="3"/>
+				<c:VBSpan span="6">
+					<Table headerText="Your Catalog" id="tableContainer" visible="true">
+						<columns>
+							<Column hAlign="Center"><Text text="Model"/></Column>
+							<Column hAlign="Center"><Text text="Category"/></Column>
+							<Column hAlign="Center"><Text text="Price"/></Column>
+							<Column hAlign="Center"><Text text="Desc."/></Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{model}"/>
+									<Text text="{category}"/>
+									<Text text="{retailPrice}"/>
+									<Text text="{description}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</c:VBSpan>
+				<c:VBSpan/>
+			</l:Grid>
+		</content>
+	</Page>
+</mvc:View>

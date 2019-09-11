@@ -1,9 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"flyhigh/flyhigh_ui/util/Navigator",
-	"flyhigh/flyhigh_ui/util/Service",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, Navigator, Service, JSONModel) {
+	"flyhigh/flyhigh_ui/util/Service"
+], function (Controller, Navigator, Service) {
 	"use strict";
 
 	var that;
@@ -19,30 +18,10 @@ sap.ui.define([
 			Service.get("/api/vendor/self").then(function (oData) {
 				oWelcomeTitle.setText(`Welcome ${oData.userInfo.givenName}! You are at ${oData.data['location.iata']}`);
 			}).catch(function () {})
-
-			Service.get("/api/vendor/catalog").then(function (oData) {
-				oTable.setModel(new JSONModel(oData));
-				oTable.bindItems("/data", that._tableCatalogRowTemplate());
-			}).catch(function () {});
 		},
 
-		_tableCatalogRowTemplate: function () {
-			return new sap.m.ColumnListItem({
-				cells: [
-					new sap.m.Text({
-						text: "{model}"
-					}),
-					new sap.m.Text({
-						text: "{catalog}"
-					}),
-					new sap.m.Text({
-						text: "{retailPrice}"
-					}),
-					new sap.m.Text({
-						text: "{description}"
-					})
-				]
-			});
+		onPressCatalog: function (oEvent) {
+			Navigator.navigate(that, "VendorCatalog");
 		}
 
 	});

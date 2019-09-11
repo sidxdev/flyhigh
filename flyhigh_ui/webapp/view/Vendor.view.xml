@@ -6,24 +6,8 @@
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
 					<Title id="welcomeTitle"/>
-					<Table headerText="Your Catalog" id="tableContainer" visible="true">
-						<columns>
-							<Column hAlign="Center"><Text text="Model"/></Column>
-							<Column hAlign="Center"><Text text="Category"/></Column>
-							<Column hAlign="Center"><Text text="Price"/></Column>
-							<Column hAlign="Center"><Text text="Desc."/></Column>
-						</columns>
-						<items>
-							<ColumnListItem>
-								<cells>
-									<Text text="{model}"/>
-									<Text text="{category}"/>
-									<Text text="{retailPrice}"/>
-									<Text text="{description}"/>
-								</cells>
-							</ColumnListItem>
-						</items>
-					</Table>
+					<GenericTile header="Catalog" class="sapUiTinyMargin fullWidth" subheader="Browse your Catalog" press="onPressCatalog"/>
+					<GenericTile header="TBD" class="sapUiTinyMargin fullWidth" subheader="TBD" press="onPressVendor"/>
 				</c:VBSpan>
 				<c:VBSpan/>
 			</l:Grid>
