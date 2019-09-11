@@ -2,7 +2,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:c="flyhigh.flyhigh_ui.util">
 	<Page title="Vendor">
 		<content>
-			<l:Grid position="Center" id="gridContainer" defaultSpan="XL4 L4 M4 S12" visible="true">
+			<l:Grid position="Center" id="gridContainer">
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
 					<Title id="welcomeTitle"/>

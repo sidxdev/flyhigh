@@ -3,7 +3,7 @@
 	<App id="app">
 		<Page id="page" title="{i18n>title}">
 			<content>
-				<l:Grid position="Center" id="gridContainer" defaultSpan="XL4 L4 M4 S12" visible="false">
+				<l:Grid position="Center" id="gridContainer" visible="false">
 					<c:VBSpan span="3"/>
 					<c:VBSpan span="6">
 						<Title id="welcomeTitle"/>

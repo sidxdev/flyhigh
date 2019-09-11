@@ -74,10 +74,10 @@
 				"clearControlAggregation": false
 			},
 			"routes": [{
-				"name": "App",
-				"pattern": "App",
+				"name": "RouteApp",
+				"pattern": "RputeApp",
 				"target": [
-					"App"
+					"TargetApp"
 				]
 			}, {
 				"name": "Unauthorized",
@@ -105,7 +105,7 @@
 				]
 			}],
 			"targets": {
-				"App": {
+				"TargetApp": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
