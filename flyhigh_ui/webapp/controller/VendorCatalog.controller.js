@@ -18,6 +18,10 @@ sap.ui.define([
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
 			}).catch(function () {});
 		},
+		
+		onNavBack: function(oEvent) {
+			Navigator.navigate(that, "Vendor");
+		},
 
 		_tableCatalogRowTemplate: function () {
 			return new sap.m.ColumnListItem({

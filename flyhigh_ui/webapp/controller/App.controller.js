@@ -21,6 +21,7 @@ sap.ui.define([
 				} else if (Service.containsScope("VENDOR", oUser.scopes)) {
 					Navigator.navigate(that, "Vendor");
 				} else {
+					Navigator.navigate(that, "App");
 					oWelcomeTitle.setText("Welcome " + oUser.userInfo.givenName + "!");
 					oGrid.setVisible(true);
 				}

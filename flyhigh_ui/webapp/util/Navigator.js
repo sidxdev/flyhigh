@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/base/Object",
 	"sap/m/BusyDialog",
-	"flyhigh/flyhigh_ui/util/Service"
-], function (Object, BusyDialog, Service) {
+	"flyhigh/flyhigh_ui/util/Service", 
+	"sap/ui/core/routing/History"
+], function (Object, BusyDialog, Service, History) {
 	"use strict";
 
 	var Navigator = {};
@@ -27,7 +28,11 @@ sap.ui.define([
 
 	Navigator.navigate = function (oCtx, sRoute) {
 		var oRouter = sap.ui.core.UIComponent.getRouterFor(oCtx);
-		oRouter.navTo(sRoute);
+		var sCurrentRoute = oRouter.getHashChanger().hash;
+		// Only Route if already not there
+		if (sCurrentRoute !== sRoute) {
+			oRouter.navTo(sRoute);
+		}
 	};
 
 	return Navigator;
