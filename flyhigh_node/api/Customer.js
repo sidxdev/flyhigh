@@ -1,16 +1,6 @@
 const router = require("express").Router();
 const dbHelper = require("../lib/db");
 
-// Get own information
-router.get("/self", (req, res) => {
-	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		res.status(200).send({
-			data: user,
-			userInfo: req.authInfo.userInfo
-		});
-	});
-});
-
 // Add self to flight
 router.post("/flightItinerary", (req, res) => {
 	let flightId = req.body.flightId;
@@ -23,8 +13,8 @@ router.post("/flightItinerary", (req, res) => {
 
 // Get all the active discounts
 router.get("/activeDiscounts", (req, res) => {
-	let query = "SELECT * FROM \"model.CatalogDiscount\" where (\"startdate\" < CURRENT_TIMESTAMP and \"enddate\" > CURRENT_TIMESTAMP)";
-	query += "and \"discountid\" is not null and (\"customerid\" is null or \"customerid\" = ?)";
+	let query = "SELECT * FROM \"model.CatalogDiscount\" WHERE (\"startdate\" < CURRENT_TIMESTAMP AND \"enddate\" > CURRENT_TIMESTAMP)";
+	query += "and \"discountid\" IS NOT NULL AND (\"customerid\" IS NULL OR \"customerid\" = ?)";
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, query, [user.id]);
 	}).then((data) => {
@@ -35,10 +25,13 @@ router.get("/activeDiscounts", (req, res) => {
 // Get full catalog with discounts
 router.get("/fullCatalog", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "SELECT * FROM \"model.CatalogDiscount\" where \"customerid\" is null or \"customerid\" = ?", [user.id]);
+		return dbHelper.query(req.db, "SELECT * FROM \"model.CatalogDiscount\" WHERE \"customerid\" IS NULL OR \"customerid\" = ?", [user.id]);
 	}).then((data) => {
 		res.status(201).send(data);
 	});
 });
+
+// Apply common API endpoints
+require("./_common")(router, "Customer");
 
 module.exports = router;

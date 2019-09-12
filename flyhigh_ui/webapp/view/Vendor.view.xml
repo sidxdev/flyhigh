@@ -6,7 +6,12 @@
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
 					<Title id="welcomeTitle"/>
-					<GenericTile header="Catalog" class="sapUiTinyMargin fullWidth" subheader="Browse your Catalog" press="onPressCatalog"/>
+					<GenericTile header="Catalog" class="sapUiTinyMargin fullWidth" subheader="Browse your Catalog" press="onPressCatalog">
+						<TileContent>
+							<Label id="catalogCount"/>
+							<Label id="discountCount"/>
+						</TileContent>
+					</GenericTile>
 					<GenericTile header="TBD" class="sapUiTinyMargin fullWidth" subheader="TBD" press="onPressVendor"/>
 				</c:VBSpan>
 				<c:VBSpan/>

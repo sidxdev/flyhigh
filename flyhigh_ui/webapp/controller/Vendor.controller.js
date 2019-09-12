@@ -13,11 +13,19 @@ sap.ui.define([
 			that = this;
 			var oWelcomeTitle = that.getView().byId("welcomeTitle");
 			var oTable = that.getView().byId("tableContainer");
-
+			var oCatalogCount = that.getView().byId("catalogCount");
+			var oDiscountCount = that.getView().byId("discountCount");
+			
 			// Initialize data
 			Service.get("/api/vendor/self").then(function (oData) {
 				oWelcomeTitle.setText(`Welcome ${oData.userInfo.givenName}! You are at ${oData.data['location.iata']}`);
-			}).catch(function () {})
+			}).catch(function () {});
+			
+			// Load Counts
+			Service.get("/api/vendor/counts").then(function (oData) {
+				oCatalogCount.setText(`You have ${oData.items} items.`);
+				oDiscountCount.setText(`You have ${oData.discounts} discounts.`);
+			}).catch(function () {});
 		},
 
 		onPressCatalog: function (oEvent) {

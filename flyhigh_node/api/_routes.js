@@ -25,9 +25,10 @@ router.post("/register", (req, res) => {
 	let scope = req.body.scope;
 	let uuid = uuidv4();
 	if (scope === "CUSTOMER" && req.body.prefCurrency) {
-		dbHelper.query(req.db, "CALL \"procedure::createCustomer\" (?, ?, ?)", [uuid, req.authInfo.userInfo.email, req.body.prefCurrency]).then(() => {
-			res.status(201).send({});
-		}).catch(function (err) {
+		dbHelper.query(req.db, "CALL \"procedure::createCustomer\" (?, ?, ?)", [uuid, req.authInfo.userInfo.email, req.body.prefCurrency]).then(
+			() => {
+				res.status(201).send({});
+			}).catch(function (err) {
 			res.status(500).send(err);
 		});
 	} else if (scope === "VENDOR" && req.body.iata) {
@@ -41,6 +42,7 @@ router.post("/register", (req, res) => {
 			error: "Must request 'CUSTOMER' or 'VENDOR' scope."
 		});
 	}
+	return null;
 });
 
 // Scoped API Routes

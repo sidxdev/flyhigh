@@ -2,12 +2,21 @@ const router = require("express").Router();
 const dbHelper = require("../lib/db");
 const uuidv4 = require("uuid/v4");
 
-// Get own information
-router.get("/self", (req, res) => {
+// Get counts
+router.get("/counts", (req, res) => {
+	let retData = {};
+	let userId = null;
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
+		userId = user.id;
+		return dbHelper.query(req.db,
+			"SELECT COUNT(*) AS \"discounts\" FROM \"model.CatalogDiscount\" WHERE \"vendorid\" = ? AND \"discountid\" IS NULL", [userId]);
+	}).then(discountData => {
+		retData.discounts = discountData.length > 0 ? discountData[0].discounts : 0;
+		return dbHelper.query(req.db, "SELECT COUNT(*) AS \"items\"	FROM \"model.Catalog\" WHERE \"vendor.id\" = ?", [userId]);
+	}).then(itemsData => {
+		retData.items = itemsData.length > 0 ? itemsData[0].items : 0;
 		res.status(200).send({
-			data: user,
-			userInfo: req.authInfo.userInfo
+			data: retData
 		});
 	});
 });
@@ -42,5 +51,8 @@ router.post("/catalog", (req, res) => {
 	});
 
 });
+
+// Apply common API endpoints
+require("./_common")(router, "Vendor");
 
 module.exports = router;
