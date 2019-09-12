@@ -14,9 +14,7 @@ module.exports = function (router, identifier) {
 
 	// Reset User profile
 	router.get("/reset", (req, res) => {
-		dbHelper.getUserFromEmail(req.db, identifier, req.authInfo.userInfo.email).then(user => {
-			return dbHelper.query(req.db, "CALL \"procedure::resetUser\" (?)", [user.id]);
-		}).then(() => {
+		dbHelper.query(req.db, "CALL \"procedure::resetUser\" (?)", [req.authInfo.userInfo.email]).then(() => {
 			res.redirect("/");
 		});
 		return null;
