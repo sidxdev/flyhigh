@@ -9,7 +9,7 @@ router.get("/counts", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
 		userId = user.id;
 		return dbHelper.query(req.db,
-			"SELECT COUNT(*) AS \"discounts\" FROM \"model.CatalogDiscount\" WHERE \"vendorid\" = ? AND \"discountid\" IS NULL", [userId]);
+			"SELECT COUNT(*) AS \"discounts\" FROM \"model.CatalogDiscount\" WHERE \"vendorid\" = ? AND \"discountid\" IS NOT NULL", [userId]);
 	}).then(discountData => {
 		retData.discounts = discountData.length > 0 ? discountData[0].discounts : 0;
 		return dbHelper.query(req.db, "SELECT COUNT(*) AS \"items\"	FROM \"model.Catalog\" WHERE \"vendor.id\" = ?", [userId]);
