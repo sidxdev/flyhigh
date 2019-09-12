@@ -6,13 +6,13 @@
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
 					<Title id="welcomeTitle"/>
-					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="200" displayTime="2000">
-						<GenericTile header="Catalog" subheader="Browse your Catalog" press="onPressCatalog">
+					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="250" displayTime="2500">
+						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog">
 							<TileContent footer="Items in Catalog">
 								<NumericContent id="catalogCount"/>
 							</TileContent>
 						</GenericTile>
-						<GenericTile header="Catalog" subheader="Browse your Catalog" press="onPressCatalog">
+						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog">
 							<TileContent footer="Active Discounts">
 								<NumericContent id="discountCount"/>
 							</TileContent>

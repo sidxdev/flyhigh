@@ -2,3 +2,8 @@
 .fullWidth {
 	width: -webkit-fill-available !important;
 }
+
+// SlideTile Wrapper
+.sapMSTWrapper {
+	width: -webkit-fill-available !important;
+}
