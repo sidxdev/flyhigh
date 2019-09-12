@@ -18,6 +18,8 @@ router.get("/counts", (req, res) => {
 		res.status(200).send({
 			data: retData
 		});
+	}).catch(err => {
+		res.status(500).send({error: err});
 	});
 });
 
@@ -29,12 +31,14 @@ router.get("/catalog", (req, res) => {
 		res.status(200).send({
 			data: data
 		});
+	}).catch(err => {
+		res.status(500).send({error: err});
 	});
 });
 
 // Add item to catalog
 router.post("/catalog", (req, res) => {
-	if (!req.body.model && !req.body.category && req.body.retailPrice && !req.body.description) {
+	if (!req.body && !req.body.model && !req.body.category && !req.body.retailPrice && !req.body.description) {
 		return res.status(400).send({
 			error: "Provide model, category, retialPrice & description fields."
 		});
@@ -48,6 +52,8 @@ router.post("/catalog", (req, res) => {
 		]);
 	}).then(() => {
 		res.status(201).send({});
+	}).catch(err => {
+		res.status(500).send({error: err});
 	});
 
 });

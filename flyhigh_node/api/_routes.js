@@ -18,6 +18,10 @@ router.get("/flights", (req, res) => {
 		res.status(200).send({
 			data: data
 		});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
 	});
 });
 
@@ -25,10 +29,9 @@ router.post("/register", (req, res) => {
 	let scope = req.body.scope;
 	let uuid = uuidv4();
 	if (scope === "CUSTOMER" && req.body.prefCurrency) {
-		dbHelper.query(req.db, "CALL \"procedure::createCustomer\" (?, ?, ?)", [uuid, req.authInfo.userInfo.email, req.body.prefCurrency]).then(
-			() => {
-				res.status(201).send({});
-			}).catch(function (err) {
+		dbHelper.query(req.db, "CALL \"procedure::createCustomer\" (?, ?, ?)", [uuid, req.authInfo.userInfo.email, req.body.prefCurrency]).then(() => {
+			res.status(201).send({});
+		}).catch(function (err) {
 			res.status(500).send(err);
 		});
 	} else if (scope === "VENDOR" && req.body.iata) {

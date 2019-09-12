@@ -33,7 +33,7 @@ context model {
             category    : SKU;
             vendor      : association[1, 1] to Vendor { id } not null;
             retailPrice : Amount                             not null;
-            description : String(50);
+            description : String(200);
     };
 
     entity FlightItinerary {

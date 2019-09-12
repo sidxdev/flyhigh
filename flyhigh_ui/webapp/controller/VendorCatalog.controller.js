@@ -7,6 +7,7 @@ sap.ui.define([
 	"use strict";
 
 	var that;
+	var oBusyDialog = new BusyDialog({});
 
 	return Controller.extend("flyhigh.flyhigh_ui.controller.VendorCatalog", {
 		onInit: function () {
@@ -19,6 +20,7 @@ sap.ui.define([
 		},
 
 		onAddItem: function (oEvent) {
+			oBusyDialog.open();
 			Service.post("/api/vendor/catalog", {
 				model: "iPhone",
 				category: "phone",
@@ -26,7 +28,9 @@ sap.ui.define([
 				description: new Date().toString()
 			}).then(function () {
 				that._fetchCatalog();
-			}).catch(function () {});
+			}).catch(function () {}).finally(function () {
+				oBusyDialog.close();
+			});;
 		},
 
 		_fetchCatalog: function () {
