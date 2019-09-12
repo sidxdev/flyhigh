@@ -3,7 +3,7 @@
 	width: -webkit-fill-available !important;
 }
 
-// SlideTile Wrapper
+ /* SlideTile Wrapper */
 .sapMSTWrapper {
-	width: -webkit-fill-available !important;
+	width: inherit !important;
 }
