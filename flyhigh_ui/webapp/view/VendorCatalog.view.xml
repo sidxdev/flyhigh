@@ -5,7 +5,16 @@
 			<l:Grid position="Center" id="gridContainer">
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
-					<Table headerText="Your Catalog" id="tableContainer">
+					<Table id="tableContainer">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Your Catalog"/>
+									<ToolbarSpacer/>
+									<Button icon="sap-icon://add" press="onAddItem"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
 						<columns>
 							<Column hAlign="Center"><Text text="Model"/></Column>
 							<Column hAlign="Center"><Text text="Category"/></Column>

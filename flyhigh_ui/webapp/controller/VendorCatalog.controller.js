@@ -5,22 +5,37 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, Navigator, Service, JSONModel) {
 	"use strict";
-	
+
 	var that;
 
 	return Controller.extend("flyhigh.flyhigh_ui.controller.VendorCatalog", {
 		onInit: function () {
 			that = this;
+			that._fetchCatalog();
+		},
+
+		onNavBack: function (oEvent) {
+			Navigator.navigate(that, "Vendor");
+		},
+
+		onAddItem: function (oEvent) {
+			Service.post("/api/vendor/catalog", {
+				model: "iPhone",
+				category: "phone",
+				retailPrice: 100,
+				description: new Date().toString()
+			}).then(function () {
+				that._fetchCatalog();
+			}).catch(function () {});
+		},
+
+		_fetchCatalog: function () {
 			var oTable = that.getView().byId("tableContainer");
 
 			Service.get("/api/vendor/catalog").then(function (oData) {
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
 			}).catch(function () {});
-		},
-		
-		onNavBack: function(oEvent) {
-			Navigator.navigate(that, "Vendor");
 		},
 
 		_tableCatalogRowTemplate: function () {

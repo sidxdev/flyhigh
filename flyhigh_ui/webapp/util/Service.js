@@ -20,6 +20,21 @@ sap.ui.define([
 		});
 	};
 
+	Service.post = function (url, jsonData) {
+		return new Promise(function (resolve, reject) {
+			$.ajax({
+				url: url,
+				type: "POST",
+				dataType: 'json',
+				contentType: 'application/json',
+				data: JSON.stringify(jsonData),
+				processData: false,
+				success: resolve,
+				error: reject
+			});
+		});
+	};
+
 	Service.checkAuth = function (scope) {
 		return new Promise(function (resolve, reject) {
 			$.ajax({
