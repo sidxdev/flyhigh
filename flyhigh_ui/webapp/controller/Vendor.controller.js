@@ -23,8 +23,8 @@ sap.ui.define([
 			
 			// Load Counts
 			Service.get("/api/vendor/counts").then(function (oData) {
-				oCatalogCount.setText(`You have ${oData.items} items.`);
-				oDiscountCount.setText(`You have ${oData.discounts} discounts.`);
+				oCatalogCount.setValue(oData.data.items);
+				oDiscountCount.setValue(oData.data.discounts);
 			}).catch(function () {});
 		},
 
