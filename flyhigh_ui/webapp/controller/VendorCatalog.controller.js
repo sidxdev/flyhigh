@@ -1,9 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
+	"sap/m/BusyDialog",
 	"flyhigh/flyhigh_ui/util/Navigator",
 	"flyhigh/flyhigh_ui/util/Service",
 	"sap/ui/model/json/JSONModel"
-], function (Controller, Navigator, Service, JSONModel) {
+], function (Controller, BusyDialog, Navigator, Service, JSONModel) {
 	"use strict";
 
 	var that;
@@ -49,7 +50,7 @@ sap.ui.define([
 						text: "{model}"
 					}),
 					new sap.m.Text({
-						text: "{catalog}"
+						text: "{category}"
 					}),
 					new sap.m.Text({
 						text: "{retailPrice}"
