@@ -123,8 +123,8 @@ sap.ui.define([
 			var sCatalogText = oTable.getModel().getProperty(sItemPath + "/model");
 			var oAddDiscountTitle = sap.ui.getCore().byId("addDiscountTitle");
 			var oAddDiscountCatalogId = sap.ui.getCore().byId("addDiscountCatalogId");
-			oAddDiscountTitle.setText("Add discount to " + sCatalogText);
-			oAddDiscountCatalogId.setValue("Item ID: " + sCatalogid);
+			oAddDiscountTitle.setTitle("Add discount to " + sCatalogText);
+			oAddDiscountCatalogId.setText("Item ID: " + sCatalogid);
 		},
 
 		_getAddDiscountsDialog: function () {
@@ -142,7 +142,7 @@ sap.ui.define([
 		},
 
 		onAddDiscountDialogSave: function (oEvent) {
-			if (!Validator.formCheck("addItemContainer")) {
+			if (!Validator.formCheck("addDiscountContainer")) {
 				return;
 			}
 			var oLabelCatalogid = sap.ui.getCore().byId("addDiscountCatalogId");

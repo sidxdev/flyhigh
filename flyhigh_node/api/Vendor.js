@@ -71,11 +71,12 @@ router.post("/discount", (req, res) => {
 		});
 	}
 	let uuid = uuidv4();
-	dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?)", [uuid, req.body.catalogid,
+	dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?, ?)", [uuid, req.body.catalogid,
 		req.body.startdate,
 		req.body.enddate,
 		req.body.absdisc,
-		req.body.perdisc
+		req.body.perdisc,
+		null
 	]).then(() => {
 		res.status(201).send({});
 	}).catch(err => {
