@@ -197,9 +197,10 @@ sap.ui.define([
 				} else {
 					if (!aAgg[iIndex].hasOwnProperty("discounts")) {
 						aAgg[iIndex].discounts = [];
-						aAgg[iIndex].discountCount = 1;
+						aAgg[iIndex].discountCount = 0;
 					}
 					aAgg[iIndex].discounts.push(oRow);
+					aAgg[iIndex].discountCount += 1;
 				}
 				return aAgg;
 			}, []);
