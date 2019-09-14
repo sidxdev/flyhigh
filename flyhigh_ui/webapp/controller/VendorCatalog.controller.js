@@ -128,6 +128,7 @@ sap.ui.define([
 					return oAgg.catalogid === oRow.catalogid;
 				});
 				if (iIndex === -1) {
+					if(oRow.discountid) oRow.discounts = [oRow];
 					aAgg.push(oRow);
 				} else {
 					if (!aAgg[iIndex].hasOwnProperty("discounts")) aAgg[iIndex].discounts = [];
