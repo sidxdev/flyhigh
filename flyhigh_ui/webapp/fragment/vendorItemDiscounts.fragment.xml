@@ -2,7 +2,7 @@
 	<Dialog title="Add Item to your Catalog">
 		<content>
 			<c:VBSpan id="viewItemDiscountsContainer">
-				<Table id="tableItemDiscounts" mode="Delete" delete="onDeleteItemDiscount">
+				<Table id="tableItemDiscounts" delete="onDeleteItemDiscount">
 					<headerToolbar>
 						<OverflowToolbar>
 							<content>
@@ -18,15 +18,6 @@
 						<Column hAlign="Center"><Text text="Percentage Discount"/></Column>
 					</columns>
 					<items>
-						<ColumnListItem>
-							<cells>
-								<Text text="{startdate}"/>
-								<Text text="{enddate}"/>
-								<Text text="{discountabsolute}"/>
-								<Text text="{discountpercentage}"/>
-							</cells>
-						</ColumnListItem>
-					</items>
 				</Table>
 			</c:VBSpan>
 		</content>

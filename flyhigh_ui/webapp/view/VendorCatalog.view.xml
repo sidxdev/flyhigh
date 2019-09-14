@@ -5,7 +5,7 @@
 			<l:Grid position="Center" id="gridContainer">
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
-					<Table id="tableContainer" mode="SingleSelect" itemPress="onCatalogItemPress">
+					<Table id="tableContainer" itemPress="onCatalogItemPress">
 						<headerToolbar>
 							<OverflowToolbar>
 								<content>
@@ -21,16 +21,7 @@
 							<Column hAlign="Center"><Text text="Price"/></Column>
 							<Column hAlign="Center"><Text text="Desc."/></Column>
 						</columns>
-						<items>
-							<ColumnListItem>
-								<cells>
-									<Text text="{model}"/>
-									<Text text="{category}"/>
-									<Text text="{retailPrice}"/>
-									<Text text="{description}"/>
-								</cells>
-							</ColumnListItem>
-						</items>
+						<items/>
 					</Table>
 				</c:VBSpan>
 				<c:VBSpan/>

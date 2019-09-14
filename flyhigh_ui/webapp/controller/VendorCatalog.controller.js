@@ -70,7 +70,7 @@ sap.ui.define([
 
 		onCatalogItemPress: function (oEvent) {
 			var oTable = that.getView().byId("tableContainer");
-			var sItemPath = oEvent.getSource().getBindingContextPath() + "/discounts";
+			var sItemPath = oEvent.getParameter("listItem").getBindingContextPath() + "/discounts";
 			var aDiscounts = oTable.getModel().getProperty(sItemPath);
 			if (aDiscounts) {
 				that._getViewItemDiscountsDialog.open();
@@ -99,7 +99,7 @@ sap.ui.define([
 		},
 
 		onDeleteItemDiscount: function(oEvent) {
-			var sDiscountid = oEvent.getSource().getBindingContextPath() + "/discountid";
+			var sDiscountid = oEvent.getParameter("listItem").getBindingContextPath() + "/discountid";
 			
 			oBusyDialog.open();
 			Service.delete("/api/vendor/discount/" + sDiscountid).then(function() {
@@ -139,6 +139,7 @@ sap.ui.define([
 
 		_tableCatalogRowTemplate: function () {
 			return new sap.m.ColumnListItem({
+				type: "Active",
 				cells: [
 					new sap.m.Text({
 						text: "{model}"
@@ -158,6 +159,7 @@ sap.ui.define([
 
 		_tableItemDiscountsRowTemplate: function () {
 			return new sap.m.ColumnListItem({
+				type: "Delete",
 				cells: [
 					new sap.m.Text({
 						text: "{startdate}"
