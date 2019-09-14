@@ -115,7 +115,7 @@ sap.ui.define([
 
 		onAddDiscount: function (oEvent) {
 			var oTable = that.getView().byId("tableContainer");
-			var sItemPath = oEvent.getParameter("listItem").getBindingContextPath();
+			var sItemPath = oEvent.getSource().getParent().getBindingContextPath();
 			var sCatalogid = oTable.getModel().getProperty(sItemPath + "/catalogid");
 			
 			that._getAddDiscountsDialog().open();
@@ -142,7 +142,28 @@ sap.ui.define([
 		},
 
 		onAddDiscountDialogSave: function (oEvent) {
+			if (!Validator.formCheck("addItemContainer")) {
+				return;
+			}
+			var oLabelCatalogid = sap.ui.getCore().byId("addDiscountCatalogId");
+			var oInputStartDate = sap.ui.getCore().byId("inputStartDate");
+			var oInputEndDate = sap.ui.getCore().byId("inputEndDate");
+			var oInputAbsDisc = sap.ui.getCore().byId("inputAbsDisc");
+			var oInputPerDisc = sap.ui.getCore().byId("inputPerDisc");
 			that._destroyAddDiscountsDialog();
+
+			oBusyDialog.open();
+			Service.post("/api/vendor/discount", {
+				catalogid: oLabelCatalogid.getText(),
+				startdate: oInputStartDate.getValue(),
+				enddate: oInputEndDate.getValue(),
+				absdisc: oInputAbsDisc.getValue(),
+				perdisc: oInputPerDisc.getValue()
+			}).then(function () {
+				that._fetchCatalog();
+			}).catch(function () {}).finally(function () {
+				oBusyDialog.close();
+			});
 		},
 
 		onAddDiscountDialogCancel: function (oEvent) {

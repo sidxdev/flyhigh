@@ -63,6 +63,28 @@ router.post("/catalog", (req, res) => {
 	});
 });
 
+// Add discount
+router.post("/discount", (req, res) => {
+	if (!req.body && !req.body.catalogid && !req.body.startdate && !req.body.enddate) {
+		return res.status(400).send({
+			error: "Provide startdate & enddate."
+		});
+	}
+	let uuid = uuidv4();
+	dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?)", [uuid, req.body.catalogid,
+		req.body.startdate,
+		req.body.enddate,
+		req.body.absdisc,
+		req.body.perdisc
+	]).then(() => {
+		res.status(201).send({});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
+	});
+});
+
 // Delete discount
 router.delete("/discount/:discountid", (req, res) => {
 	dbHelper.query(req.db, "DELETE FROM \"model.Discount\" WHERE \"id\" = ?", [req.params.discountid]).then(() => {
