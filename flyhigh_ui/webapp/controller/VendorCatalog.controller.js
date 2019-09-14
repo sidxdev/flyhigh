@@ -21,17 +21,46 @@ sap.ui.define([
 		},
 
 		onAddItem: function (oEvent) {
+			that._oAddItemDialog().open();
+		},
+
+		_getAddItemDialog: function () {
+			if (!that._oAddItemDialog) {
+				that._oAddItemDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.vendorAddItem");
+				that.getView().addDependent(that._oAddItemDialog);
+			}
+			return that._oAddItemDialog;
+		},
+
+		_destroyAddItemDialog: function () {
+			if(that._oAddItemDialog) {
+				that._oAddItemDialog.destory();
+				that._oAddItemDialog = null;
+			}
+		},
+
+		onAddItemDialogSave: function (oEvent) {
+			var oInputModel = that.getView().byId("inputModel");
+			var oInputCategory = that.getView().byId("inputCategory");
+			var oInputPrice = that.getView().byId("inputPrice");
+			var oInputDesc = that.getView().byId("inputDesc");
+			that._destroyAddItemDialog();
+
 			oBusyDialog.open();
 			Service.post("/api/vendor/catalog", {
-				model: "iPhone",
-				category: "phone",
-				retailPrice: 100,
-				description: new Date().toString()
+				model: oInputModel.getValue(),
+				category: oInputCategory.getValue(),
+				retailPrice: oInputPrice.getValue(),
+				description: oInputDesc.getValue()
 			}).then(function () {
 				that._fetchCatalog();
 			}).catch(function () {}).finally(function () {
 				oBusyDialog.close();
-			});;
+			});
+		},
+
+		onAddItemDialogCancel: function (oEvent) {
+			that._destroyAddItemDialog();
 		},
 
 		_fetchCatalog: function () {
