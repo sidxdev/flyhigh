@@ -68,14 +68,58 @@ sap.ui.define([
 
 		onChangeInput: Validator.onChangeInput,
 
+		onCatalogItemPress: function (oEvent) {
+			var oTable = that.getView().byId("tableContainer");
+			var sItemPath = oEvent.getSource().getBindingContextPath() + "/discounts";
+			var aDiscounts = oTable.getModel().getProperty(sItemPath);
+			if (aDiscounts) {
+				that._getViewItemDiscountsDialog.open();
+				var oViewItemDiscountsTable = sap.ui.getCore().byId("tableItemDiscounts");
+				oViewItemDiscountsTable.setModel(new JSONModel(aDiscounts));
+				oViewItemDiscountsTable.bindItems("/", that._tableCatalogRowTemplate());
+			}
+		},
+
+		_getViewItemDiscountsDialog: function () {
+			if (!that._oViewItemDiscountsDialog) {
+				that._oViewItemDiscountsDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.vendorItemDiscounts", that);
+			}
+			return that._oViewItemDiscountsDialog;
+		},
+
+		_destroyViewItemDiscountsDialog: function () {
+			if (that._oViewItemDiscountsDialog) {
+				that._oViewItemDiscountsDialog.destroy();
+				that._oViewItemDiscountsDialog = null;
+			}
+		},
+
+		onViewItemDiscountsButton: function (oEvent) {
+			that._destroyViewItemDiscountsDialog();
+		},
+
+		onDeleteItemDiscount: function(oEvent) {
+			var sDiscountid = oEvent.getSource().getBindingContextPath() + "/discountid";
+			
+			oBusyDialog.open();
+			Service.delete("/api/vendor/discount/" + sDiscountid).then(function() {
+				that._fetchCatalog();
+			}).finally(function() {
+				oBusyDialog.close();
+			});
+		},
+
 		_fetchCatalog: function () {
+			oBusyDialog.open();
 			var oTable = that.getView().byId("tableContainer");
 
 			Service.get("/api/vendor/catalog").then(function (oData) {
 				oData.data = that._aggregateDiscounts(oData.data);
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
-			}).catch(function () {});
+			}).catch(function () {}).finally(function() {
+				oBusyDialog.close();
+			});
 		},
 
 		_aggregateDiscounts: function (oData) {
@@ -107,6 +151,25 @@ sap.ui.define([
 					}),
 					new sap.m.Text({
 						text: "{description}"
+					})
+				]
+			});
+		},
+
+		_tableItemDiscountsRowTemplate: function () {
+			return new sap.m.ColumnListItem({
+				cells: [
+					new sap.m.Text({
+						text: "{startdate}"
+					}),
+					new sap.m.Text({
+						text: "{enddate}"
+					}),
+					new sap.m.Text({
+						text: "{discountabsolute}"
+					}),
+					new sap.m.Text({
+						text: "{discountpercentage}"
 					})
 				]
 			});

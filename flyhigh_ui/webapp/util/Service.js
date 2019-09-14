@@ -19,6 +19,17 @@ sap.ui.define([
 			});
 		});
 	};
+	
+	Service.delete = function (url) {
+		return new Promise(function (resolve, reject) {
+			$.ajax({
+				url: url,
+				type: "DELETE",
+				success: resolve,
+				error: reject
+			});
+		});
+	};
 
 	Service.post = function (url, jsonData) {
 		return new Promise(function (resolve, reject) {
