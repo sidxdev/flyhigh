@@ -19,7 +19,9 @@ router.get("/counts", (req, res) => {
 			data: retData
 		});
 	}).catch(err => {
-		res.status(500).send({error: err});
+		res.status(500).send({
+			error: err
+		});
 	});
 });
 
@@ -32,7 +34,9 @@ router.get("/catalog", (req, res) => {
 			data: data
 		});
 	}).catch(err => {
-		res.status(500).send({error: err});
+		res.status(500).send({
+			error: err
+		});
 	});
 });
 
@@ -53,9 +57,21 @@ router.post("/catalog", (req, res) => {
 	}).then(() => {
 		res.status(201).send({});
 	}).catch(err => {
-		res.status(500).send({error: err});
+		res.status(500).send({
+			error: err
+		});
 	});
+});
 
+// Delete discount
+router.delete("/discount/:discountid", (req, res) => {
+	dbHelper.query(req.db, "DELETE FROM \"model.Discount\" WHERE \"id\" = ?", [req.params.discountid]).then(() => {
+		res.status(204).send({});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
+	});
 });
 
 // Apply common API endpoints
