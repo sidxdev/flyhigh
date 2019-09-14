@@ -1,8 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:c="flyhigh.flyhigh_ui.util">
-	<Dialog title="Add Item to your Catalog">
+	<Dialog title="Your Discounts">
 		<content>
 			<c:VBSpan id="viewItemDiscountsContainer">
-				<Table id="tableItemDiscounts" delete="onDeleteItemDiscount">
+				<Table id="tableItemDiscounts" mode="Delete" delete="onDeleteItemDiscount">
 					<headerToolbar>
 						<OverflowToolbar>
 							<content>
@@ -17,7 +17,7 @@
 						<Column hAlign="Center"><Text text="Absolute Discount"/></Column>
 						<Column hAlign="Center"><Text text="Percentage Discount"/></Column>
 					</columns>
-					<items>
+					<items/>
 				</Table>
 			</c:VBSpan>
 		</content>
