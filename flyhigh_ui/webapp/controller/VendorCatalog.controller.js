@@ -124,7 +124,7 @@ sap.ui.define([
 			var oAddDiscountTitle = sap.ui.getCore().byId("addDiscountTitle");
 			var oAddDiscountCatalogId = sap.ui.getCore().byId("addDiscountCatalogId");
 			oAddDiscountTitle.setTitle("Add discount to " + sCatalogText);
-			oAddDiscountCatalogId.setText("Item ID: " + sCatalogid);
+			oAddDiscountCatalogId.setText(sCatalogid);
 		},
 
 		_getAddDiscountsDialog: function () {

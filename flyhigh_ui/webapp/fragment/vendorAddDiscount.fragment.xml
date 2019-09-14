@@ -2,6 +2,7 @@
 	<Dialog id="addDiscountTitle">
 		<content>
 			<c:VBSpan id="addDiscountContainer">
+				<Label text="Item ID"/>
 				<Label id="addDiscountCatalogId"/>
 				<Label text="Start Date" required="true"/>
 				<DatePicker id="inputStartDate" required="true" change="onChangeInput" valueFormat="yyyy-MM-dd"/>
