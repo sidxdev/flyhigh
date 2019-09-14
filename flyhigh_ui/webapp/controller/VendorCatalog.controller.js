@@ -46,7 +46,7 @@ sap.ui.define([
 			var oInputModel = sap.ui.getCore().byId("inputModel");
 			var oInputCategory = sap.ui.getCore().byId("inputCategory");
 			var oInputPrice = sap.ui.getCore().byId("inputPrice");
-			var oInputDesc =sap.ui.getCore().byId("inputDesc");
+			var oInputDesc = sap.ui.getCore().byId("inputDesc");
 			that._destroyAddItemDialog();
 
 			oBusyDialog.open();
@@ -65,16 +65,32 @@ sap.ui.define([
 		onAddItemDialogCancel: function (oEvent) {
 			that._destroyAddItemDialog();
 		},
-		
+
 		onChangeInput: Validator.onChangeInput,
 
 		_fetchCatalog: function () {
 			var oTable = that.getView().byId("tableContainer");
 
 			Service.get("/api/vendor/catalog").then(function (oData) {
+				oData = that._aggregateDiscounts(oData);
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
 			}).catch(function () {});
+		},
+
+		_aggregateDiscounts: function (oData) {
+			return oData.reduce(function (aAgg, oRow) {
+				var iIndex = aAgg.findIndex(function (oAgg) {
+					return oAgg.catalogid === oRow.catalogid;
+				});
+				if (iIndex === -1) {
+					aAgg.push(oRow);
+				} else {
+					if (!aAgg[iIndex].hasOwnProperty("discounts")) aAgg[iIndex].discounts = [];
+					aAgg[iIndex].discounts.push(oRow);
+				}
+				return aAgg;
+			}, []);
 		},
 
 		_tableCatalogRowTemplate: function () {
