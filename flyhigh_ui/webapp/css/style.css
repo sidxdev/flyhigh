@@ -8,6 +8,6 @@
 	width: inherit !important;
 }
 
-#addItemContainer, #viewItemDiscountsContainer {
+#addItemContainer, #viewItemDiscountsContainer, #addDiscountContainer {
 	padding: 1rem !important;
 }

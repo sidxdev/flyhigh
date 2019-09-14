@@ -100,17 +100,53 @@ sap.ui.define([
 			that._destroyViewItemDiscountsDialog();
 		},
 
-		onDeleteItemDiscount: function(oEvent) {
+		onDeleteItemDiscount: function (oEvent) {
 			var sDiscountidPath = oEvent.getParameter("listItem").getBindingContextPath() + "/discountid";
 			var sDiscountid = oEvent.getParameter("listItem").getModel().getProperty(sDiscountidPath);
-			
+
 			that._destroyViewItemDiscountsDialog();
 			oBusyDialog.open();
-			Service.delete("/api/vendor/discount/" + sDiscountid).then(function() {
+			Service.delete("/api/vendor/discount/" + sDiscountid).then(function () {
 				that._fetchCatalog();
-			}).finally(function() {
+			}).finally(function () {
 				oBusyDialog.close();
 			});
+		},
+
+		onAddDiscount: function (oEvent) {
+			var oTable = that.getView().byId("tableContainer");
+			var sItemPath = oEvent.getParameter("listItem").getBindingContextPath();
+			var sCatalogid = oTable.getModel().getProperty(sItemPath + "/catalogid");
+			
+			that._getAddDiscountsDialog().open();
+			
+			var sCatalogText = oTable.getModel().getProperty(sItemPath + "/model");
+			var oAddDiscountTitle = sap.ui.getCore().byId("addDiscountTitle");
+			var oAddDiscountCatalogId = sap.ui.getCore().byId("addDiscountCatalogId");
+			oAddDiscountTitle.setText("Add discount to " + sCatalogText);
+			oAddDiscountCatalogId.setValue("Item ID: " + sCatalogid);
+		},
+
+		_getAddDiscountsDialog: function () {
+			if (!that._oAddDiscountsDialog) {
+				that._oAddDiscountsDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.vendorAddDiscount", that);
+			}
+			return that._oAddDiscountsDialog;
+		},
+
+		_destroyAddDiscountsDialog: function () {
+			if (that._oAddDiscountsDialog) {
+				that._oAddDiscountsDialog.destroy();
+				that._oAddDiscountsDialog = null;
+			}
+		},
+
+		onAddDiscountDialogSave: function (oEvent) {
+			that._destroyAddDiscountsDialog();
+		},
+
+		onAddDiscountDialogCancel: function (oEvent) {
+			that._destroyAddDiscountsDialog();
 		},
 
 		_fetchCatalog: function () {
@@ -121,7 +157,7 @@ sap.ui.define([
 				oData.data = that._aggregateDiscounts(oData.data);
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
-			}).catch(function () {}).finally(function() {
+			}).catch(function () {}).finally(function () {
 				oBusyDialog.close();
 			});
 		},
@@ -132,10 +168,16 @@ sap.ui.define([
 					return oAgg.catalogid === oRow.catalogid;
 				});
 				if (iIndex === -1) {
-					if(oRow.discountid) oRow.discounts = [oRow];
+					if (oRow.discountid) {
+						oRow.discounts = [oRow];
+						oRow.discountCount = 1;
+					}
 					aAgg.push(oRow);
 				} else {
-					if (!aAgg[iIndex].hasOwnProperty("discounts")) aAgg[iIndex].discounts = [];
+					if (!aAgg[iIndex].hasOwnProperty("discounts")) {
+						aAgg[iIndex].discounts = [];
+						aAgg[iIndex].discountCount = 1;
+					}
 					aAgg[iIndex].discounts.push(oRow);
 				}
 				return aAgg;
@@ -157,6 +199,11 @@ sap.ui.define([
 					}),
 					new sap.m.Text({
 						text: "{description}"
+					}),
+					new sap.m.Button({
+						icon: "sap-icon://add",
+						text: "{discountCount}",
+						press: that.onAddDiscount
 					})
 				]
 			});

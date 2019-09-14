@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:c="flyhigh.flyhigh_ui.util">
+	<Dialog id="addDiscountTitle">
+		<content>
+			<c:VBSpan id="addDiscountContainer">
+				<Label id="addDiscountCatalogId"/>
+				<Label text="Model" required="true"/>
+				<Input id="inputModel" required="true" change="onChangeInput"/>
+				<Label text="Category" required="true"/>
+				<Input id="inputCategory" required="true" change="onChangeInput"/>
+				<Label text="Price" required="true"/>
+				<Input id="inputPrice" type="Number" required="true" change="onChangeInput"/>
+				<Label text="Description" required="true"/>
+				<Input id="inputDesc" required="true" change="onChangeInput"/>
+			</c:VBSpan>
+		</content>
+		<beginButton>
+			<Button text="Add Item" press="onAddDiscountDialogSave"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onAddDiscountDialogCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
