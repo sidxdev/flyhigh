@@ -73,7 +73,7 @@ sap.ui.define([
 			var sItemPath = oEvent.getParameter("listItem").getBindingContextPath() + "/discounts";
 			var aDiscounts = oTable.getModel().getProperty(sItemPath);
 			if (aDiscounts) {
-				that._getViewItemDiscountsDialog.open();
+				that._getViewItemDiscountsDialog().open();
 				var oViewItemDiscountsTable = sap.ui.getCore().byId("tableItemDiscounts");
 				oViewItemDiscountsTable.setModel(new JSONModel(aDiscounts));
 				oViewItemDiscountsTable.bindItems("/", that._tableCatalogRowTemplate());
