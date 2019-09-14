@@ -1,15 +1,15 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:c="flyhigh.flyhigh_ui.util">
 	<Dialog title="Add Item to your Catalog">
 		<content>
-			<c:VBSpan class="paddingSmall">
-				<Label text="Model"/>
-				<Input id="inputModel"/>
-				<Label text="Category"/>
-				<Input id="inputCategory"/>
-				<Label text="Price"/>
-				<Input id="inputPrice" type="Number"/>
-				<Label text="Description"/>
-				<Input id="inputDesc"/>
+			<c:VBSpan id="addItemContainer">
+				<Label text="Model" required="true"/>
+				<Input id="inputModel" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
+				<Label text="Category" required="true"/>
+				<Input id="inputCategory" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
+				<Label text="Price" required="true"/>
+				<Input id="inputPrice" type="Number" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
+				<Label text="Description" required="true"/>
+				<Input id="inputDesc" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
 			</c:VBSpan>
 		</content>
 		<beginButton>

@@ -3,8 +3,9 @@ sap.ui.define([
 	"sap/m/BusyDialog",
 	"flyhigh/flyhigh_ui/util/Navigator",
 	"flyhigh/flyhigh_ui/util/Service",
+	"flyhigh/flyhigh_ui/util/Validator",
 	"sap/ui/model/json/JSONModel"
-], function (Controller, BusyDialog, Navigator, Service, JSONModel) {
+], function (Controller, BusyDialog, Navigator, Service, Validator, JSONModel) {
 	"use strict";
 
 	var that;
@@ -32,13 +33,16 @@ sap.ui.define([
 		},
 
 		_destroyAddItemDialog: function () {
-			if(that._oAddItemDialog) {
+			if (that._oAddItemDialog) {
 				that._oAddItemDialog.destroy();
 				that._oAddItemDialog = null;
 			}
 		},
 
 		onAddItemDialogSave: function (oEvent) {
+			if (!Validator.formCheck(that, "addItemContainer")) {
+				return;
+			}
 			var oInputModel = that.getView().byId("inputModel");
 			var oInputCategory = that.getView().byId("inputCategory");
 			var oInputPrice = that.getView().byId("inputPrice");
