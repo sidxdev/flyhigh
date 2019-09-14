@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:c="flyhigh.flyhigh_ui.util">
 	<Dialog title="Add Item to your Catalog">
-		<content class="paddingSmall">
-			<c:VBSpan>
+		<content>
+			<c:VBSpan class="paddingSmall">
 				<Label text="Model"/>
 				<Input id="inputModel"/>
 				<Label text="Category"/>

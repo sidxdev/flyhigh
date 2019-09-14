@@ -33,7 +33,7 @@ sap.ui.define([
 
 		_destroyAddItemDialog: function () {
 			if(that._oAddItemDialog) {
-				that._oAddItemDialog.destory();
+				that._oAddItemDialog.destroy();
 				that._oAddItemDialog = null;
 			}
 		},
