@@ -21,13 +21,12 @@ sap.ui.define([
 		},
 
 		onAddItem: function (oEvent) {
-			that._oAddItemDialog().open();
+			that._getAddItemDialog().open();
 		},
 
 		_getAddItemDialog: function () {
 			if (!that._oAddItemDialog) {
-				that._oAddItemDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.vendorAddItem");
-				that.getView().addDependent(that._oAddItemDialog);
+				that._oAddItemDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.vendorAddItem", that);
 			}
 			return that._oAddItemDialog;
 		},

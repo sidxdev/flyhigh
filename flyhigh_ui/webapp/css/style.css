@@ -7,3 +7,7 @@
 .sapMSTWrapper {
 	width: inherit !important;
 }
+
+.paddingSmall {
+	padding: 1rem !important;
+}
