@@ -72,7 +72,7 @@ sap.ui.define([
 			var oTable = that.getView().byId("tableContainer");
 
 			Service.get("/api/vendor/catalog").then(function (oData) {
-				oData = that._aggregateDiscounts(oData);
+				oData.data = that._aggregateDiscounts(oData.data);
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
 			}).catch(function () {});
