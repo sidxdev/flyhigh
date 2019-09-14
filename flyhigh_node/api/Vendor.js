@@ -71,6 +71,8 @@ router.post("/discount", (req, res) => {
 		});
 	}
 	let uuid = uuidv4();
+	if(!req.body.absdisc) req.body.absdisc = 0;
+	if(!req.body.perdisc) req.body.perdisc = 0;
 	dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?, ?)", [uuid, req.body.catalogid,
 		req.body.startdate,
 		req.body.enddate,
