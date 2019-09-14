@@ -3,13 +3,13 @@
 		<content>
 			<c:VBSpan id="addItemContainer">
 				<Label text="Model" required="true"/>
-				<Input id="inputModel" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
+				<Input id="inputModel" required="true" change="onChangeInput"/>
 				<Label text="Category" required="true"/>
-				<Input id="inputCategory" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
+				<Input id="inputCategory" required="true" change="onChangeInput"/>
 				<Label text="Price" required="true"/>
-				<Input id="inputPrice" type="Number" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
+				<Input id="inputPrice" type="Number" required="true" change="onChangeInput"/>
 				<Label text="Description" required="true"/>
-				<Input id="inputDesc" required="true" change="flyhigh.flyhigh_ui.util.Validator.onChangeInput"/>
+				<Input id="inputDesc" required="true" change="onChangeInput"/>
 			</c:VBSpan>
 		</content>
 		<beginButton>

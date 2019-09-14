@@ -40,13 +40,13 @@ sap.ui.define([
 		},
 
 		onAddItemDialogSave: function (oEvent) {
-			if (!Validator.formCheck(that, "addItemContainer")) {
+			if (!Validator.formCheck("addItemContainer")) {
 				return;
 			}
-			var oInputModel = that.getView().byId("inputModel");
-			var oInputCategory = that.getView().byId("inputCategory");
-			var oInputPrice = that.getView().byId("inputPrice");
-			var oInputDesc = that.getView().byId("inputDesc");
+			var oInputModel = sap.ui.getCore().byId("inputModel");
+			var oInputCategory = sap.ui.getCore().byId("inputCategory");
+			var oInputPrice = sap.ui.getCore().byId("inputPrice");
+			var oInputDesc =sap.ui.getCore().byId("inputDesc");
 			that._destroyAddItemDialog();
 
 			oBusyDialog.open();
@@ -65,6 +65,8 @@ sap.ui.define([
 		onAddItemDialogCancel: function (oEvent) {
 			that._destroyAddItemDialog();
 		},
+		
+		onChangeInput: Validator.onChangeInput,
 
 		_fetchCatalog: function () {
 			var oTable = that.getView().byId("tableContainer");

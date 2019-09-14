@@ -56,9 +56,9 @@ sap.ui.define([
 		}
 	};
 	// ********************************************************************************
-	Validator.formCheck = function (oCtx, sFormRoot) {
+	Validator.formCheck = function (sFormRoot) {
 		var bValidated = true;
-		var oView = oCtx.getView().byId(sFormRoot);
+		var oView = sap.ui.getCore().byId(sFormRoot);
 		var aElements = Validator.getChildrenRecursively(oView);
 
 		aElements.forEach(function (oElement) {
