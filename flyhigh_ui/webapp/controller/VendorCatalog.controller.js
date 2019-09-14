@@ -104,6 +104,7 @@ sap.ui.define([
 			var sDiscountidPath = oEvent.getParameter("listItem").getBindingContextPath() + "/discountid";
 			var sDiscountid = oEvent.getParameter("listItem").getModel().getProperty(sDiscountidPath);
 			
+			that._destroyViewItemDiscountsDialog();
 			oBusyDialog.open();
 			Service.delete("/api/vendor/discount/" + sDiscountid).then(function() {
 				that._fetchCatalog();
