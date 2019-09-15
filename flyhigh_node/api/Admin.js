@@ -31,7 +31,7 @@ router.get("/loadFlights/:times", (req, res) => {
 		for (let i = 0; i < times; ++i) {
 			today.add(1, "days");
 			let uuid = uuidv4();
-			let query = "INSERT INTO \"model.Flight\" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			let query = "CALL \"procedure::createFlight\" (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			let daydiff = flight.arrdatetime.diff(flight.depdatetime, "days");
 			let depdatetime = moment().utc(`${today.format("YYYY-MM-DD")}T${flight.depdatetime.format("HH:mm:ss")}`);
 			let arrdatetime = moment().utc(`${today.format("YYYY-MM-DD")}T${flight.arrdatetime.format("HH:mm:ss")}`);
