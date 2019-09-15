@@ -101,7 +101,7 @@ router.delete("/discount/:discountid", (req, res) => {
 
 // get information on Passengars passing through
 router.get("/passenger", (req, res) => {
-	let query = "SELECT * FROM \"model.PassengerList\" WHERE \"flight.depdatetime\" > CURRENT_TIMESTAMP";
+	let query = "SELECT * FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP";
 	query += " AND (\"destination\" = ? OR \"origin\" = ?)";
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, query, [user.location.iata, user.location.iata]);
