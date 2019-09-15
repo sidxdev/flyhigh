@@ -18,11 +18,18 @@
 							</TileContent>
 						</GenericTile>
 					</SlideTile>
-					<GenericTile header="Passenger Arrivals" class="sapUiTinyMargin fullWidth" press="onPressPassenger">
-						<TileContent>
-							<Label id="passengerCount"/>
-						</TileContent>
-					</GenericTile>
+					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="250" displayTime="2500">
+						<GenericTile header="Passenger Traffic" subheader="Inbound" class="fullWidth" press="onPressPassenger">
+							<TileContent>
+								<Label id="passengerInboundCount"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile header="Passenger Traffic" subheader="Outbound" class="fullWidth" press="onPressPassenger">
+							<TileContent>
+								<Label id="passengerOutboundCount"/>
+							</TileContent>
+						</GenericTile>
+					</SlideTile>
 				</c:VBSpan>
 				<c:VBSpan/>
 			</l:Grid>

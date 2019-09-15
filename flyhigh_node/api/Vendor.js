@@ -104,7 +104,7 @@ router.get("/passenger", (req, res) => {
 	let query = "SELECT * FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP";
 	query += " AND (\"destination\" = ? OR \"origin\" = ?)";
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, query, [user.location.iata, user.location.iata]);
+		return dbHelper.query(req.db, query, [user["location.iata"], user["location.iata"]]);
 	}).then((data) => {
 		res.status(200).send({
 			data: data

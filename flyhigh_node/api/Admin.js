@@ -31,17 +31,15 @@ router.get("/loadFlights/:times", (req, res) => {
 		for (let i = 0; i < times; ++i) {
 			today.add(1, "days");
 			let uuid = uuidv4();
-			let query = "CALL \"procedure::createFlight\" (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			let query = "CALL \"procedure::createFlight\" (?, ?, ?, ?, ?, ?, ?)";
 			let daydiff = flight.arrdatetime.diff(flight.depdatetime, "days");
-			let depdatetime = moment().utc(`${today.format("YYYY-MM-DD")}T${flight.depdatetime.format("HH:mm:ss")}`);
-			let arrdatetime = moment().utc(`${today.format("YYYY-MM-DD")}T${flight.arrdatetime.format("HH:mm:ss")}`);
+			let depdatetime = moment.utc(`${today.format("YYYY-MM-DD")}T${flight.depdatetime.format("HH:mm:ss")}`);
+			let arrdatetime = moment.utc(`${today.format("YYYY-MM-DD")}T${flight.arrdatetime.format("HH:mm:ss")}`);
 			arrdatetime.add(daydiff, "days");
 
 			promises.push(dbHelper.query(req.db, query, [uuid, flight.operator, flight.flightnum, flight.origin, flight.destination,
 				depdatetime.toISOString(),
-				arrdatetime.toISOString(),
-				null,
-				null
+				arrdatetime.toISOString()
 			]));
 		}
 	});

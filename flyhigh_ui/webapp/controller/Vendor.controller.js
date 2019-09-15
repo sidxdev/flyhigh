@@ -15,23 +15,27 @@ sap.ui.define([
 			var oTable = that.getView().byId("tableContainer");
 			var oCatalogCount = that.getView().byId("catalogCount");
 			var oDiscountCount = that.getView().byId("discountCount");
-			var oPassengerCount = that.getView().byId("passengerCount");
+			var oPassengerInboundCount = that.getView().byId("passengerInboundCount");
+			var oPassengerOutboundCount = that.getView().byId("passengerOutboundCount");
+			var sSelfLocation = null; 
 
 			// Initialize data
-			Service.get("/api/vendor/self").then(function (oData) {
-				oWelcomeTitle.setText(`Welcome ${oData.userInfo.givenName}! You are at ${oData.data['location.iata']}`);
-			}).catch(function () {});
+			Service.get("/api/vendor/self").then(function (oSelfData) {
+				sSelfLocation = oSelfData.data['location.iata'];
+				oWelcomeTitle.setText(`Welcome ${oSelfData.userInfo.givenName}! You are at ${sSelfLocation}`);
+				// Load Passenger Counts
+				return Service.get("/api/vendor/passenger");
+			}).then(function (oData) {
+				oPassengerInboundCount.setText(oData.data.filter(p => p.destination === sSelfLocation).length + " passengers.");
+				oPassengerOutboundCount.setText(oData.data.filter(p => p.origin === sSelfLocation).length + " passengers.");
+			}).catch(function (err) {});
 
 			// Load Counts
 			Service.get("/api/vendor/counts").then(function (oData) {
 				oCatalogCount.setValue(oData.data.items);
 				oDiscountCount.setValue(oData.data.discounts);
-			}).catch(function () {});
+			}).catch(function (err) {});
 
-			// Load Passenger Counts
-			Service.get("/api/vendor/passenger").then(function (oData) {
-				oPassengerCount.setValue(oData.data.length + " passengers will be travelling though.");
-			}).catch(function () {});
 		},
 
 		onPressCatalog: function (oEvent) {
