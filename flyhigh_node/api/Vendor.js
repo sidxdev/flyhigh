@@ -71,8 +71,8 @@ router.post("/discount", (req, res) => {
 		});
 	}
 	let uuid = uuidv4();
-	if(!req.body.absdisc) req.body.absdisc = 0;
-	if(!req.body.perdisc) req.body.perdisc = 0;
+	if (!req.body.absdisc) req.body.absdisc = 0;
+	if (!req.body.perdisc) req.body.perdisc = 0;
 	dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?, ?)", [uuid, req.body.catalogid,
 		req.body.startdate,
 		req.body.enddate,
@@ -92,6 +92,23 @@ router.post("/discount", (req, res) => {
 router.delete("/discount/:discountid", (req, res) => {
 	dbHelper.query(req.db, "DELETE FROM \"model.Discount\" WHERE \"id\" = ?", [req.params.discountid]).then(() => {
 		res.status(204).send({});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
+	});
+});
+
+// get information on Passengars passing through
+router.get("/passenger", (req, res) => {
+	let query = "SELECT * FROM \"model.PassengerList\" WHERE \"flight.depdatetime\" > CURRENT_TIMESTAMP";
+	query += " AND (\"destination\" = ? OR \"origin\" = ?)";
+	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
+		return dbHelper.query(req.db, query, [user.location.iata, user.location.iata]);
+	}).then((data) => {
+		res.status(200).send({
+			data: data
+		});
 	}).catch(err => {
 		res.status(500).send({
 			error: err

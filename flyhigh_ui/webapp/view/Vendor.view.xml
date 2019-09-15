@@ -18,7 +18,11 @@
 							</TileContent>
 						</GenericTile>
 					</SlideTile>
-					<GenericTile header="TBD" class="sapUiTinyMargin fullWidth" subheader="TBD" press="onPressVendor"/>
+					<GenericTile header="Passenger Arrivals" class="sapUiTinyMargin fullWidth" press="onPressPassenger">
+						<TileContent>
+							<Label id="passengerCount"/>
+						</TileContent>
+					</GenericTile>
 				</c:VBSpan>
 				<c:VBSpan/>
 			</l:Grid>

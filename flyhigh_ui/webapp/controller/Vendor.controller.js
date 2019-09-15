@@ -15,16 +15,22 @@ sap.ui.define([
 			var oTable = that.getView().byId("tableContainer");
 			var oCatalogCount = that.getView().byId("catalogCount");
 			var oDiscountCount = that.getView().byId("discountCount");
-			
+			var oPassengerCount = that.getView().byId("passengerCount");
+
 			// Initialize data
 			Service.get("/api/vendor/self").then(function (oData) {
 				oWelcomeTitle.setText(`Welcome ${oData.userInfo.givenName}! You are at ${oData.data['location.iata']}`);
 			}).catch(function () {});
-			
+
 			// Load Counts
 			Service.get("/api/vendor/counts").then(function (oData) {
 				oCatalogCount.setValue(oData.data.items);
 				oDiscountCount.setValue(oData.data.discounts);
+			}).catch(function () {});
+
+			// Load Passenger Counts
+			Service.get("/api/vendor/passenger").then(function (oData) {
+				oPassengerCount.setValue(oData.data.length + " passengers will be travelling though.");
 			}).catch(function () {});
 		},
 
