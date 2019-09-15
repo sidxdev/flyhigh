@@ -19,7 +19,7 @@ router.get("/loadFlights/:times", (req, res) => {
 	}
 	const flightMaster = [{
 		operator: "EK",
-		flighttnum: 1,
+		flightnum: 1,
 		origin: "DXB",
 		destination: "LHR",
 		depdatetime: moment.utc("2019-08-27T07:45:00"),

@@ -23,10 +23,10 @@
 			}
 		}
 	}, {
-		"target_table": "model.Flight",
+		"target_table": "model.Role",
 		"source_data": {
 			"data_type": "CSV",
-			"file_name": "flight.csv",
+			"file_name": "role.csv",
 			"has_header": true,
 			"dialect": "HANA",
 			"type_config": {

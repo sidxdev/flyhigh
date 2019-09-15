@@ -67,7 +67,7 @@ context model {
     entity Flight {
         key id          : UUID                                  not null;
             operator    : FlightOperator                        not null;
-            flighttnum  : FlightNumber                          not null;
+            flightnum   : FlightNumber                          not null;
             origin      : association[1, 1] to Airport { iata } not null;
             destination : association[1, 1] to Airport { iata } not null;
             depdatetime : UTCDateTime                           not null;
@@ -103,7 +103,7 @@ context model {
             customer.id             as customerid,
             flight.id               as flightid,
             flight.operator,
-            flight.flighttnum,
+            flight.flightnum,
             flight.origin.iata      as origin,
             flight.destination.iata as destination,
             flight.depdatetime,
