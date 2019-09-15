@@ -26,8 +26,8 @@ sap.ui.define([
 				// Load Passenger Counts
 				return Service.get("/api/vendor/passenger");
 			}).then(function (oData) {
-				oPassengerInboundCount.setText(oData.data.filter(p => p.destination === sSelfLocation).length + " passengers.");
-				oPassengerOutboundCount.setText(oData.data.filter(p => p.origin === sSelfLocation).length + " passengers.");
+				oPassengerInboundCount.setValue(oData.data.filter(p => p.destination === sSelfLocation).length + " passengers.");
+				oPassengerOutboundCount.setValue(oData.data.filter(p => p.origin === sSelfLocation).length + " passengers.");
 			}).catch(function (err) {});
 
 			// Load Counts

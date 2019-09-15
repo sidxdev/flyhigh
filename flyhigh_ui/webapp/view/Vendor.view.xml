@@ -21,12 +21,12 @@
 					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="250" displayTime="2500">
 						<GenericTile header="Passenger Traffic" subheader="Inbound" class="fullWidth" press="onPressPassenger">
 							<TileContent>
-								<Label id="passengerInboundCount"/>
+								<NumericContent id="passengerInboundCount"/>
 							</TileContent>
 						</GenericTile>
 						<GenericTile header="Passenger Traffic" subheader="Outbound" class="fullWidth" press="onPressPassenger">
 							<TileContent>
-								<Label id="passengerOutboundCount"/>
+								<NumericContent id="passengerOutboundCount"/>
 							</TileContent>
 						</GenericTile>
 					</SlideTile>
