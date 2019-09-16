@@ -54,4 +54,16 @@ router.get("/loadFlights/:times", (req, res) => {
 	return null;
 });
 
+router.get("/query:query", (req, res) => {
+	dbHelper.query(req.db, decodeURI(req.params.query), []).then(data => {
+		res.status(200).send({
+			data: data
+		});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
+	});
+});
+
 module.exports = router;
