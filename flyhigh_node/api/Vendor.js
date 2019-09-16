@@ -18,13 +18,13 @@ router.get("/counts", (req, res) => {
 	}).then(itemsData => {
 		retData.items = itemsData.length > 0 ? itemsData[0].items : 0;
 		return dbHelper.query(req.db,
-			"SELECT COUNT(*) AS \"inboundpax\" FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP AND \"destination\ = ?", [
+			"SELECT COUNT(*) AS \"inboundpax\" FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP AND \"destination\" = ?", [
 				location
 			]);
 	}).then(inbound => {
 		retData.inboundpax = inbound.length > 0 ? inbound[0].inboundpax : 0;
 		return dbHelper.query(req.db,
-			"SELECT COUNT(*) AS \"outboundpax\" FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP AND \"origin\ = ?", [
+			"SELECT COUNT(*) AS \"outboundpax\" FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP AND \"origin\" = ?", [
 				location
 			]);
 	}).then(outbound => {
@@ -115,11 +115,18 @@ router.delete("/discount/:discountid", (req, res) => {
 
 // get information on Passengars passing through
 router.get("/passenger", (req, res) => {
-	let query = "SELECT * FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP";
+	let location = null;
+	let query = "SELECT * FROM \"model.PassengerListWithAgg\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP";
 	query += " AND (\"destination\" = ? OR \"origin\" = ?)";
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, query, [user["location.iata"], user["location.iata"]]);
+		location = user["location.iata"];
+		return dbHelper.query(req.db, query, [location, location]);
 	}).then((data) => {
+		data = data.map(p => {
+			p.direction = p.origin === location ? "Outbound" : "Inbound";
+			p.datetime =  p.origin === location ? p.depdatetime : p.arrdatetime;
+			return p;	
+		});
 		res.status(200).send({
 			data: data
 		});

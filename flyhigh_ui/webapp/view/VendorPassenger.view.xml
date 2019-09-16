@@ -1,0 +1,30 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flyhigh.flyhigh_ui.controller.VendorPassenger"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:c="flyhigh.flyhigh_ui.util">
+	<Page title="Vendor - Passenger" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<l:Grid position="Center" id="gridContainer">
+				<c:VBSpan span="3"/>
+				<c:VBSpan span="6">
+					<Table id="passengerTable">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Passenger Traffic"/>
+									<ToolbarSpacer/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Center"><Text text="Flight"/></Column>
+							<Column hAlign="Center"><Text text="Direction"/></Column>
+							<Column hAlign="Center"><Text text="Date/Time"/></Column>
+							<Column hAlign="Center"><Text text="PAX"/></Column>
+						</columns>
+						<items/>
+					</Table>
+				</c:VBSpan>
+				<c:VBSpan/>
+			</l:Grid>
+		</content>
+	</Page>
+</mvc:View>

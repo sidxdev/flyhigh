@@ -121,4 +121,26 @@ context model {
             flight.depgate,
             flight.arrgate
         };
+
+    view PassengerListAgg as
+        select from PassengerList
+        {
+            flightid,
+            count(customerid) as pax
+        };
+
+    view PassengerListWithAgg as
+        select from PassengerListAgg as P
+        left join   FlightItinerary as F  on
+            P."flightid" = F."flight"."id"
+        {
+            F.flight.id as flightid,
+            F.operator,
+            F.flightnum,
+            F.origin.iata      as origin,
+            F.destination.iata as destination,
+            F.depdatetime,
+            F.arrdatetime,
+            P.pax
+        };
 };

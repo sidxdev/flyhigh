@@ -103,6 +103,12 @@
 				"target": [
 					"VendorCatalog"
 				]
+			}, {
+				"name": "VendorPassenger",
+				"pattern": "VendorPassenger",
+				"target": [
+					"VendorPassenger"
+				]
 			}],
 			"targets": {
 				"TargetApp": {
@@ -127,6 +133,10 @@
 				"VendorCatalog": {
 					"viewType": "XML",
 					"viewName": "VendorCatalog"
+				},
+				"VendorPassenger": {
+					"viewType": "XML",
+					"viewName": "VendorPassenger"
 				}
 			}
 		}
