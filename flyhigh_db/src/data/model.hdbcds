@@ -89,7 +89,7 @@ context model {
     view CatalogDiscount as
         select from     Catalog as C
         left outer join Discount as D on
-            C."id" = D."item"."id"
+            C.id = D.item.id
         {
             C.id                             as catalogid,
             C.model,
@@ -134,7 +134,7 @@ context model {
     view PassengerListWithAgg as
         select from Flight as F
         left join   FlightPax as P on
-            P.flightid = F.flight.id
+            P.flightid = F.id
         {
             F.id               as flightid,
             F.operator,
