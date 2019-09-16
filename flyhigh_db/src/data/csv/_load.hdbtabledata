@@ -33,5 +33,16 @@
 				"delimiter": ","
 			}
 		}
+	}, {
+		"target_table": "model.FlightMaster",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "flightMaster.csv",
+			"has_header": true,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		}
 	}]
 }

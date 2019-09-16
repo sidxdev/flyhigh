@@ -63,6 +63,16 @@ context model {
         key tocurrency   : Currency    not null;
             factor       : BinaryFloat not null;
     };
+    
+    entity FlightMaster {
+    	operator: FlightOperator not null;
+		flightnum: FlightNumber not null;
+		origin: IATA not null;
+		destination: IATA not null;
+		deptime: String(8);
+		arrtime: String(8);
+		daydiff: Integer;
+    };
 
     entity Flight {
         key id          : UUID                                  not null;

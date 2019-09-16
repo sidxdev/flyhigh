@@ -1,0 +1,3 @@
+operator,flightnum,origin,destination,deptime,arrtime,daydiff
+EK,1,DXB,LHR,07:45:00,12:25:00,0
+EK,2,LHR,DXB,14:20:00,12:20:00,1
