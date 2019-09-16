@@ -131,7 +131,7 @@ context model {
         group by
             flightid;
 
-    view PassengerListWithAgg as
+    view FlightPaxFull as
         select from Flight as F
         left join   FlightPax as P on
             P.flightid = F.id
