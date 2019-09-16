@@ -127,20 +127,22 @@ context model {
         {
             flightid,
             count(customerid) as pax
-        };
+        }
+        group by
+            flightid;
 
     view PassengerListWithAgg as
         select from PassengerListAgg as P
         left join   FlightItinerary as F  on
-            P."flightid" = F."flight"."id"
+            P.flightid = F.flight.id
         {
-            F.flight.id as flightid,
-            F.operator,
-            F.flightnum,
-            F.origin.iata      as origin,
-            F.destination.iata as destination,
-            F.depdatetime,
-            F.arrdatetime,
+            F.flight.id               as flightid,
+            F.flight.operator,
+            F.flight.flightnum,
+            F.flight.origin.iata      as origin,
+            F.flight.destination.iata as destination,
+            F.flight.depdatetime,
+            F.flight.arrdatetime,
             P.pax
         };
 };
