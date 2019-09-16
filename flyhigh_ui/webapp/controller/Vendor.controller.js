@@ -37,6 +37,10 @@ sap.ui.define([
 
 		onPressCatalog: function (oEvent) {
 			Navigator.navigate(that, "VendorCatalog");
+		},
+		
+		onPressPassenger: function (oEvent) {
+			Navigator.navigate(that, "VendorPassenger");
 		}
 
 	});
