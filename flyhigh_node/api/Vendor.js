@@ -6,8 +6,10 @@ const uuidv4 = require("uuid/v4");
 router.get("/counts", (req, res) => {
 	let retData = {};
 	let userId = null;
+	let location = null;
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
 		userId = user.id;
+		location = user["location.iata"];
 		return dbHelper.query(req.db,
 			"SELECT COUNT(*) AS \"discounts\" FROM \"model.CatalogDiscount\" WHERE \"vendorid\" = ? AND \"discountid\" IS NOT NULL", [userId]);
 	}).then(discountData => {
@@ -15,6 +17,18 @@ router.get("/counts", (req, res) => {
 		return dbHelper.query(req.db, "SELECT COUNT(*) AS \"items\"	FROM \"model.Catalog\" WHERE \"vendor.id\" = ?", [userId]);
 	}).then(itemsData => {
 		retData.items = itemsData.length > 0 ? itemsData[0].items : 0;
+		return dbHelper.query(req.db,
+			"SELECT COUNT(*) AS \"inboundpax\" FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP AND \"destination\ = ?", [
+				location
+			]);
+	}).then(inbound => {
+		retData.inboundpax = inbound.length > 0 ? inbound[0].inboundpax : 0;
+		return dbHelper.query(req.db,
+			"SELECT COUNT(*) AS \"outboundpax\" FROM \"model.PassengerList\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP AND \"origin\ = ?", [
+				location
+			]);
+	}).then(outbound => {
+		retData.outboundpax = outbound.length > 0 ? outbound[0].outboundpax : 0;
 		res.status(200).send({
 			data: retData
 		});

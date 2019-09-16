@@ -17,23 +17,20 @@ sap.ui.define([
 			var oDiscountCount = that.getView().byId("discountCount");
 			var oPassengerInboundCount = that.getView().byId("passengerInboundCount");
 			var oPassengerOutboundCount = that.getView().byId("passengerOutboundCount");
-			var sSelfLocation = null; 
+			var sSelfLocation = null;
 
 			// Initialize data
 			Service.get("/api/vendor/self").then(function (oSelfData) {
 				sSelfLocation = oSelfData.data['location.iata'];
 				oWelcomeTitle.setText(`Welcome ${oSelfData.userInfo.givenName}! You are at ${sSelfLocation}`);
-				// Load Passenger Counts
-				return Service.get("/api/vendor/passenger");
-			}).then(function (oData) {
-				oPassengerInboundCount.setValue(oData.data.filter(p => p.destination === sSelfLocation).length + " passengers.");
-				oPassengerOutboundCount.setValue(oData.data.filter(p => p.origin === sSelfLocation).length + " passengers.");
 			}).catch(function (err) {});
 
 			// Load Counts
 			Service.get("/api/vendor/counts").then(function (oData) {
 				oCatalogCount.setValue(oData.data.items);
 				oDiscountCount.setValue(oData.data.discounts);
+				oPassengerInboundCount.setValue(oData.data.inboundpax + " passengers.");
+				oPassengerOutboundCount.setValue(oData.data.outboundpax + " passengers.");
 			}).catch(function (err) {});
 
 		},
