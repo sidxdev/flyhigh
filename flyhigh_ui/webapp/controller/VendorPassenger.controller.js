@@ -83,6 +83,29 @@ sap.ui.define([
 			});
 		},
 
+		_aggregateDiscounts: function (oData) {
+			return oData.reduce(function (aAgg, oRow) {
+				var iIndex = aAgg.findIndex(function (oAgg) {
+					return oAgg.catalogid === oRow.catalogid;
+				});
+				if (iIndex === -1) {
+					if (oRow.discountid) {
+						oRow.discounts = [oRow];
+						oRow.discountCount = 1;
+					}
+					aAgg.push(oRow);
+				} else {
+					if (!aAgg[iIndex].hasOwnProperty("discounts")) {
+						aAgg[iIndex].discounts = [];
+						aAgg[iIndex].discountCount = 0;
+					}
+					aAgg[iIndex].discounts.push(oRow);
+					aAgg[iIndex].discountCount += 1;
+				}
+				return aAgg;
+			}, []);
+		},
+
 		_tablePassengerRowTemplate: function () {
 			return new sap.m.ColumnListItem({
 				type: "Active",
