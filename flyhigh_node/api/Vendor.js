@@ -144,7 +144,7 @@ router.post("/paxdiscount", (req, res) => {
 		});
 	}
 	let promises = [];
-	dbHelper.query(req.db, "SELECT \"customer.id\" as \"customerid\" FROM \"model.FlightItinerary\" WHERE \"flight.id\" = ?", [
+	dbHelper.query(req.db, "SELECT \"customer.id\" as \"id\" FROM \"model.FlightItinerary\" WHERE \"flight.id\" = ?", [
 		req.body.flightid
 	]).then(data => {
 		data.forEach(customer => {
