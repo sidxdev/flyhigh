@@ -84,7 +84,7 @@ sap.ui.define([
 			oBusyDialog.open();
 			Service.post("/api/vendor/paxdiscount", {
 				flightid: oLabelId.getText(),
-				datetime: oAddVendorPassengerDiscountDate.getValue(),
+				datetime: oAddVendorPassengerDiscountDate.getText(),
 				catalogids: aCatalogs,
 				absdisc: oInputAbsDisc.getValue(),
 				perdisc: oInputPerDisc.getValue()
