@@ -86,8 +86,8 @@ sap.ui.define([
 				catalogids: aCatalogs,
 				retailPrice: oInputPrice.getValue(),
 				description: oInputDesc.getValue()
-			}).then(function () {
-				that._fetchCatalog();
+			}).then(function (data) {
+				
 			}).catch(function () {}).finally(function () {
 				oBusyDialog.close();
 			});
