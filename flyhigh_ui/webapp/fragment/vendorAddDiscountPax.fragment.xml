@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:c="flyhigh.flyhigh_ui.util">
+	<Dialog id="addVendorPassengerDiscount" title="Add disocunts for Flight">
+		<content>
+			<c:VBSpan id="addVendorPassengerDiscountContainer">
+				<Label text="Flight"/>
+				<Label id="addVendorPassengerDiscountFlightDetail"/>
+				<Label id="addVendorPassengerDiscountDate"/>
+				<Label text="Absolute Discount" required="true"/>
+				<Input id="inputAbsDisc" type="Number" required="true" change="onChangeInput"/>
+				<Label text="Percentage Discount" required="true"/>
+				<Input id="inputPerDisc" required="true" change="onChangeInput"/>
+				<Table id="addVendorPassengerDiscountTableContainer" mode="MultiSelect">
+					<columns>
+						<Column hAlign="Center"><Text text="Model"/></Column>
+						<Column hAlign="Center"><Text text="Category"/></Column>
+						<Column hAlign="Center"><Text text="Price"/></Column>
+						<Column hAlign="Center"><Text text="Desc."/></Column>
+					</columns>
+					<items/>
+				</Table>
+			</c:VBSpan>
+		</content>
+		<beginButton>
+			<Button text="Add Discount" press="addVendorPassengerDiscountDialogSave"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="addVendorPassengerDiscountDialogCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

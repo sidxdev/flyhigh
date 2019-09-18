@@ -16,7 +16,6 @@
 						</headerToolbar>
 						<columns>
 							<Column hAlign="Center"><Text text="Flight"/></Column>
-							<Column hAlign="Center"><Text text="Direction"/></Column>
 							<Column hAlign="Center"><Text text="Date/Time"/></Column>
 							<Column hAlign="Center"><Text text="PAX"/></Column>
 							<Column/>
