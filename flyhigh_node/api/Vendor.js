@@ -124,11 +124,49 @@ router.get("/passenger", (req, res) => {
 	}).then((data) => {
 		data = data.map(p => {
 			p.direction = p.origin === location ? "Outbound" : "Inbound";
-			p.datetime =  p.origin === location ? p.depdatetime : p.arrdatetime;
-			return p;	
+			p.datetime = p.origin === location ? p.depdatetime : p.arrdatetime;
+			return p;
 		});
 		res.status(200).send({
 			data: data
+		});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
+	});
+});
+
+router.post("/paxdiscount", (req, res) => {
+	if (!req.body && !req.body.flightid && !req.body.datetime && !req.body.catalogids && !req.body.absdisc && !req.body.perdisc) {
+		return res.status(400).send({
+			error: "Provide flightid, datetime, catalogids, absDisc & perDisc."
+		});
+	}
+	let promises = [];
+	dbHelper.query(req.db, "SELECT \"customer.id\" as \"customerid\" FROM \"model.FlightItinerary\" WHERE \"flight.id\" = ?", [
+		req.body.flightid
+	]).then(data => {
+		data.forEach(customer => {
+			req.body.catalogids.forEach(catalogid => {
+				let uuid = uuidv4();
+				promises.push(dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?, ?)", [uuid, catalogid,
+					req.body.datetime,
+					req.body.datetime,
+					req.body.absdisc,
+					req.body.perdisc,
+					customer.id
+				]));
+			});
+		});
+		Promise.all(promises).then(() => {
+			res.status(201).send({
+				message: "OK"
+			});
+		}).catch(err => {
+			res.status(500).send({
+				error: err
+			});
 		});
 	}).catch(err => {
 		res.status(500).send({

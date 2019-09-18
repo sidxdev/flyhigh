@@ -73,8 +73,9 @@ sap.ui.define([
 				return;
 			}
 			var oLabelId = sap.ui.getCore().byId("addVendorPassengerDiscountFlightid");
-			var oInputPrice = sap.ui.getCore().byId("inputPrice");
-			var oInputDesc = sap.ui.getCore().byId("inputDesc");
+			var oAddVendorPassengerDiscountDate = sap.ui.getCore().byId("addVendorPassengerDiscountDate");
+			var oInputAbsDisc = sap.ui.getCore().byId("inputAbsDisc");
+			var oInputPerDisc = sap.ui.getCore().byId("inputPerDisc");
 			var aCatalogs = aItems.map(function(item) {
 				return oCatalogTable.getModel().getProperty(item.getBindingContextPath() + "/catalogid");
 			});
@@ -83,12 +84,15 @@ sap.ui.define([
 			oBusyDialog.open();
 			Service.post("/api/vendor/paxdiscount", {
 				flightid: oLabelId.getText(),
+				datetime: oAddVendorPassengerDiscountDate.getValue(),
 				catalogids: aCatalogs,
-				retailPrice: oInputPrice.getValue(),
-				description: oInputDesc.getValue()
+				absdisc: oInputAbsDisc.getValue(),
+				perdisc: oInputPerDisc.getValue()
 			}).then(function (data) {
 				
-			}).catch(function () {}).finally(function () {
+			}).catch(function (err) {
+				
+			}).finally(function () {
 				oBusyDialog.close();
 			});
 			
@@ -97,6 +101,8 @@ sap.ui.define([
 		addVendorPassengerDiscountDialogCancel: function (oEvent) {
 			that._destroyAddDiscountsDialog();
 		},
+		
+		onChangeInput: Validator.onChangeInput,
 
 		_fetchPassengers: function () {
 			oBusyDialog.open();

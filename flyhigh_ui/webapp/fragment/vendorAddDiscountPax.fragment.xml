@@ -8,7 +8,7 @@
 				<Label text="Absolute Discount" required="true"/>
 				<Input id="inputAbsDisc" type="Number" required="true" change="onChangeInput"/>
 				<Label text="Percentage Discount" required="true"/>
-				<Input id="inputPerDisc" required="true" change="onChangeInput"/>
+				<Input id="inputPerDisc" type="Number" required="true" change="onChangeInput"/>
 				<Label id="addVendorPassengerDiscountFlightid" visible="false"/>
 				<Table id="addVendorPassengerDiscountTableContainer" mode="MultiSelect">
 					<columns>
