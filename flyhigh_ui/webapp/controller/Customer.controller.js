@@ -56,7 +56,7 @@ sap.ui.define([
 						text: "{retailPrice}"
 					}),
 					new sap.m.Text({
-						text: "{retailPrice}"
+						text: "{discountPrice}"
 					}),
 				]
 			});

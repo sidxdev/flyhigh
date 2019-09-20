@@ -18,7 +18,18 @@ router.get("/activeDiscounts", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, query, [user.id]);
 	}).then((data) => {
-		res.status(201).send(data);
+		data = data.map({
+			d => {
+				d.retailPrice = isNaN(parseFloat(d.retailPrice)) ? 0 : parseFloat(d.retailPrice);
+				d.retailPrice = isNaN(parseFloat(d.discountpercentage)) ? 0 : parseFloat(d.discountpercentage);
+				d.retailPrice = isNaN(parseFloat(d.discountabsolute)) ? 0 : parseFloat(d.discountabsolute);
+				d.discountPrice = d.retailPrice * (1 - d.discountpercentage / 100) - d.discountabsolute;
+				return d;
+			}
+		})
+		res.status(201).send({
+			data: data
+		});
 	});
 });
 
