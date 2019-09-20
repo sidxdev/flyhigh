@@ -59,11 +59,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -75,50 +73,49 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [
-				{
-					"name": "RouteApp",
-					"pattern": "RputeApp",
-					"target": [
-						"TargetApp"
-					]
-				},
-				{
-					"name": "Unauthorized",
-					"pattern": "Unauthorized",
-					"target": [
-						"Unauthorized"
-					]
-				},
-				{
-					"name": "Customer",
-					"pattern": "Customer",
-					"target": [
-						"Customer"
-					]
-				},
-				{
-					"name": "Vendor",
-					"pattern": "Vendor",
-					"target": [
-						"Vendor"
-					]
-				},
-				{
-					"name": "VendorCatalog",
-					"pattern": "VendorCatalog",
-					"target": [
-						"VendorCatalog"
-					]
-				},
-				{
-					"name": "VendorPassenger",
-					"pattern": "VendorPassenger",
-					"target": [
-						"VendorPassenger"
-					]
-				}
-			],
+			"routes": [{
+				"name": "RouteApp",
+				"pattern": "RputeApp",
+				"target": [
+					"TargetApp"
+				]
+			}, {
+				"name": "Unauthorized",
+				"pattern": "Unauthorized",
+				"target": [
+					"Unauthorized"
+				]
+			}, {
+				"name": "Customer",
+				"pattern": "Customer",
+				"target": [
+					"Customer"
+				]
+			}, {
+				"name": "Vendor",
+				"pattern": "Vendor",
+				"target": [
+					"Vendor"
+				]
+			}, {
+				"name": "VendorCatalog",
+				"pattern": "VendorCatalog",
+				"target": [
+					"VendorCatalog"
+				]
+			}, {
+				"name": "CustomerCatalog",
+				"pattern": "CustomerCatalog",
+				"target": [
+					"CustomerCatalog"
+				]
+			}, {
+				"name": "CustomerTrips",
+				"pattern": "CustomerTrips",
+				"target": [
+					"CustomerTrips"
+				]
+			}],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
