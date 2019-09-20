@@ -1,0 +1,8 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flyhigh.flyhigh_ui.controller.CustomerCatalog"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<Page title="Catalog" showNavButton="true" navButtonPress="onNavBack">
+			<content></content>
+		</Page>
+	</App>
+</mvc:View>

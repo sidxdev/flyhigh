@@ -66,4 +66,16 @@ router.get("/query/:query", (req, res) => {
 	});
 });
 
+router.get("/access/:email/:role", (req, res) => {
+	dbHelper.query(req.db, "INSERT INTO \"model.Role\" VALUES(?, ?)", [decodeURI(req.params.email), req.params.role]).then(data => {
+		res.status(201).send({
+			data: data
+		});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
+	});
+});
+
 module.exports = router;
