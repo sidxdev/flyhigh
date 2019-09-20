@@ -20,8 +20,8 @@ router.get("/activeDiscounts", (req, res) => {
 	}).then((data) => {
 		data = data.map(d => {
 			d.retailPrice = isNaN(parseFloat(d.retailPrice)) ? 0 : parseFloat(d.retailPrice);
-			d.retailPrice = isNaN(parseFloat(d.discountpercentage)) ? 0 : parseFloat(d.discountpercentage);
-			d.retailPrice = isNaN(parseFloat(d.discountabsolute)) ? 0 : parseFloat(d.discountabsolute);
+			d.discountpercentage = isNaN(parseFloat(d.discountpercentage)) ? 0 : parseFloat(d.discountpercentage);
+			d.discountabsolute = isNaN(parseFloat(d.discountabsolute)) ? 0 : parseFloat(d.discountabsolute);
 			d.discountPrice = d.retailPrice * (1 - d.discountpercentage / 100) - d.discountabsolute;
 			return d;
 		});
