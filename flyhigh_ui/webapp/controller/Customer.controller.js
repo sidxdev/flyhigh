@@ -58,6 +58,9 @@ sap.ui.define([
 					new sap.m.Text({
 						text: "{discountPrice}"
 					}),
+					new sap.m.Text({
+						text: "{enddate}"
+					})
 				]
 			});
 		}

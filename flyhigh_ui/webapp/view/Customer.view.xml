@@ -15,6 +15,7 @@
 							<Column hAlign="Center"><Text text="Desc."/></Column>
 							<Column hAlign="Center"><Text text="Price"/></Column>
 							<Column hAlign="Center"><Text text="Discount Price"/></Column>
+							<Column hAlign="Center"><Text text="End Date"/></Column>
 						</columns>
 						<items/>
 					</Table>
