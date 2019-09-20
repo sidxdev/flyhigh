@@ -6,8 +6,8 @@
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
 					<Title id="welcomeTitle"/>
-					<GenericTile class="fullWidth" header="Trips" subheader="Browse your Trips" press="onPressTrips"/>
-					<GenericTile header="Browse the Catalog" subheader="Inbound" class="fullWidth" press="onPressCatalog"/>
+					<GenericTile class="fullWidth sapUiTinyMargin" header="Trips" subheader="Browse your Trips" press="onPressTrips"/>
+					<GenericTile header="Browse the Catalog" subheader="Inbound" class="fullWidth sapUiTinyMargin" press="onPressCatalog"/>
 					<Table id="discountTableContainer" headerText="Active Discounts for you" itemPress="onDiscountItemPress">
 						<columns>
 							<Column hAlign="Center"><Text text="Model"/></Column>
