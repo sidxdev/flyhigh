@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"flyhigh/flyhigh_ui/util/Navigator",
-	"flyhigh/flyhigh_ui/util/Service"
-], function (Controller, Navigator, Service) {
+	"flyhigh/flyhigh_ui/util/Service",
+	"sap/ui/model/json/JSONModel"
+], function (Controller, Navigator, Service, JSONModel) {
 	"use strict";
 
 	var that;;
