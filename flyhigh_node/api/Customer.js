@@ -40,6 +40,15 @@ router.get("/fullCatalog", (req, res) => {
 	});
 });
 
+// Get current trips
+router.get("/trip", (req, res) => {
+	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
+		return dbHelper.query(req.db, "SELECT * FROM \"model.CustomerTrip\" (\"CUSTOMERIDFILTER\" => ?)", [user.id]);
+	}).then((data) => {
+		res.status(201).send({data:data});
+	});
+}); 
+
 // Apply common API endpoints
 require("./_common")(router, "Customer");
 
