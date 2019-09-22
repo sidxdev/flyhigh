@@ -121,7 +121,8 @@ context model {
             I.flight.arrdatetime      as arrdatetime
         }
         where
-            I.customer.id = :CUSTOMERIDFILTER;
+                current_timestamp < I.flight.depdatetime
+            and I.customer.id     = :CUSTOMERIDFILTER;
 
     view AvailableFlight
         with parameters

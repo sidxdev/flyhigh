@@ -1,13 +1,19 @@
 /* Enter your custom styles here */
+
 .fullWidth {
-	width: -webkit-fill-available !important;
+    width: -webkit-fill-available !important;
 }
 
- /* SlideTile Wrapper */
+
+/* SlideTile Wrapper */
 .sapMSTWrapper {
-	width: inherit !important;
+    width: inherit !important;
 }
 
-#addItemContainer, #viewItemDiscountsContainer, #addDiscountContainer, #addVendorPassengerDiscountContainer {
-	padding: 1rem !important;
+#addItemContainer,
+#viewItemDiscountsContainer,
+#addDiscountContainer,
+#addVendorPassengerDiscountContainer,
+#addCustomerTripContainer {
+    padding: 1rem !important;
 }

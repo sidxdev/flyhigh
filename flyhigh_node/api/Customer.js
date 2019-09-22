@@ -58,6 +58,13 @@ router.get("/trip", (req, res) => {
 
 // Get available flights for user
 router.get("/flight", (req, res) => {
+	let operator = req.query.airlines,
+		flightnum = req.query.flightnum,
+		origin = req.query.origin,
+		departure = req.query.departure,
+		depdate = req.params.depdate,
+		arrdate = req.params.arrdate;
+
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, "SELECT * FROM \"model.AvailableFlight\" (\"CUSTOMERIDFILTER\" => ?)", [user.id]);
 	}).then((data) => {
