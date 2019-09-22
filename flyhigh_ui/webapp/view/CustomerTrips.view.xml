@@ -1,8 +1,33 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flyhigh.flyhigh_ui.controller.CustomerTrips"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
-		<Page title="Your Trips" showNavButton="true" navButtonPress="onNavBack">
-			<content></content>
+		<Page title="Trips" showNavButton="true" navButtonPress="onNavBack">
+			<content>
+				<l:Grid position="Center" id="gridContainer">
+					<c:VBSpan span="3"/>
+					<c:VBSpan span="6">
+						<Table id="tripContainer">
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title text="Your Trips"/>
+										<ToolbarSpacer/>
+										<Button icon="sap-icon://add" press="onAddTrip"/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column hAlign="Center"><Text text="Flight"/></Column>
+								<Column hAlign="Center"><Text text="Sector"/></Column>
+								<Column hAlign="Center"><Text text="Departure"/></Column>
+								<Column hAlign="Center"><Text text="Arrival"/></Column>
+							</columns>
+							<items/>
+						</Table>
+					</c:VBSpan>
+					<c:VBSpan/>
+				</l:Grid>
+			</content>
 		</Page>
 	</App>
 </mvc:View>
