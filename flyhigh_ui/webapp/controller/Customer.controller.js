@@ -22,7 +22,7 @@ sap.ui.define([
 			}).catch(function (err) {});
 
 			// Load Active discounts
-			Service.get("/api/customer/activeDiscounts").then(function (oData) {
+			Service.get("/api/customer/discounts").then(function (oData) {
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
 			}).catch(function (err) {});

@@ -119,7 +119,9 @@ context model {
             I.flight.destination.iata as destination,
             I.flight.depdatetime      as depdatetime,
             I.flight.arrdatetime      as arrdatetime
-        };
+        }
+        where
+            I.customer.id = :CUSTOMERIDFILTER;
 
     view AvailableFlight
         with parameters

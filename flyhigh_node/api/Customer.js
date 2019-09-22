@@ -2,7 +2,12 @@ const router = require("express").Router();
 const dbHelper = require("../lib/db");
 
 // Add self to flight
-router.post("/flightItinerary", (req, res) => {
+router.post("/trip", (req, res) => {
+	if (!req.body && !req.body.flightId) {
+		return res.status(400).send({
+			error: "Provide flightId field."
+		});
+	}
 	let flightId = req.body.flightId;
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, "INSERT INTO \"model.FlightItinerary\" VALUES(?, ?)", [user.id, flightId]);
@@ -12,7 +17,7 @@ router.post("/flightItinerary", (req, res) => {
 });
 
 // Get all the active discounts
-router.get("/activeDiscounts", (req, res) => {
+router.get("/discounts", (req, res) => {
 	let query = "SELECT * FROM \"model.CatalogDiscount\" WHERE (\"startdate\" < CURRENT_TIMESTAMP AND \"enddate\" > CURRENT_TIMESTAMP)";
 	query += "and \"discountid\" IS NOT NULL AND (\"customerid\" IS NULL OR \"customerid\" = ?)";
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
@@ -32,7 +37,7 @@ router.get("/activeDiscounts", (req, res) => {
 });
 
 // Get full catalog with discounts
-router.get("/fullCatalog", (req, res) => {
+router.get("/catalog", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, "SELECT * FROM \"model.CatalogDiscount\" WHERE \"customerid\" IS NULL OR \"customerid\" = ?", [user.id]);
 	}).then((data) => {
@@ -45,9 +50,22 @@ router.get("/trip", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, "SELECT * FROM \"model.CustomerTrip\" (\"CUSTOMERIDFILTER\" => ?)", [user.id]);
 	}).then((data) => {
-		res.status(201).send({data:data});
+		res.status(200).send({
+			data: data
+		});
 	});
-}); 
+});
+
+// Get available flights for user
+router.get("/flight", (req, res) => {
+	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
+		return dbHelper.query(req.db, "SELECT * FROM \"model.AvailableFlight\" (\"CUSTOMERIDFILTER\" => ?)", [user.id]);
+	}).then((data) => {
+		res.status(200).send({
+			data: data
+		});
+	});
+});
 
 // Apply common API endpoints
 require("./_common")(router, "Customer");
