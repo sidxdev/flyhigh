@@ -113,6 +113,7 @@ context model {
     as
         select from FlightItinerary as I
         {
+            I.flight.id               as flightid,
             I.flight.operator         as operator,
             I.flight.flightnum        as flightnum,
             I.flight.origin.iata      as origin,
@@ -128,9 +129,10 @@ context model {
         with parameters
             CUSTOMERIDFILTER : UUID
     as
-        select from FlightItinerary as I
-        left join   Flight as F          on
-            I.flight.id <> F.id
+        select from Flight as F
+        left join   FlightItinerary as I on
+                I.flight.id   = F.id
+            and I.customer.id = :CUSTOMERIDFILTER
         {
             F.id,
             F.operator,
@@ -141,8 +143,8 @@ context model {
             F.arrdatetime
         }
         where
-                current_timestamp < F.depdatetime
-            and I.customer.id     = :CUSTOMERIDFILTER;
+                current_timestamp <  F.depdatetime
+            and I.customer.id     is null;
 
     view PassengerList as
         select from FlightItinerary
