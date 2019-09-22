@@ -58,43 +58,41 @@ router.get("/trip", (req, res) => {
 
 // Get available flights for user
 router.get("/flight", (req, res) => {
-	let operator = req.query.airlines,
-		flightnum = req.query.flightnum,
-		origin = req.query.origin,
-		departure = req.query.departure,
-		depdate = req.params.depdate,
-		arrdate = req.params.arrdate;
 	let query = "SELECT * FROM \"model.AvailableFlight\" (\"CUSTOMERIDFILTER\" => ?) WHERE 1=1 ";
 	let params = [];
-	if(operator !== "")  {
+	if(req.query.airlines && req.query.airlines !== "")  {
 		query += "AND \"operator\" = ? ";	
-		params.push(operator);
+		params.push(req.query.airlines);
 	}
-	if(flightnum !== "")  {
+	if(req.query.flightnum && req.query.flightnum !== "")  {
 		query += "AND \"flightnum\" = ? ";	
-		params.push(flightnum);
+		params.push(req.query.flightnum);
 	}
-	if(origin !== "")  {
+	if(req.query.origin && req.query.origin !== "")  {
 		query += "AND \"origin\" = ? ";	
-		params.push(origin);
+		params.push(req.query.origin);
 	}
-	if(departure !== "")  {
+	if(req.query.departure && req.query.departure !== "")  {
 		query += "AND \"departure\" = ? ";	
-		params.push(departure);
+		params.push(req.query.departure);
 	}
-	if(depdate !== "")  {
+	if(req.params.depdate && req.params.depdate !== "")  {
 		query += "AND to_date(\"depdatetime\") = ? ";	
-		params.push(depdate);
+		params.push(req.query.depdate);
 	}
-	if(arrdate !== "")  {
+	if(req.params.arrdate && req.params.arrdate !== "")  {
 		query += "AND to_date(\"arrdatetime\") = ? ";	
-		params.push(arrdate);
+		params.push(req.query.arrdate);
 	}
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, query, [user.id]);
+		return dbHelper.query(req.db, query, [user.id, ...params]);
 	}).then((data) => {
 		res.status(200).send({
 			data: data
+		});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
 		});
 	});
 });
