@@ -64,9 +64,34 @@ router.get("/flight", (req, res) => {
 		departure = req.query.departure,
 		depdate = req.params.depdate,
 		arrdate = req.params.arrdate;
-
+	let query = "SELECT * FROM \"model.AvailableFlight\" (\"CUSTOMERIDFILTER\" => ?) WHERE 1=1 ";
+	let params = [];
+	if(operator !== "")  {
+		query += "AND \"operator\" = ? ";	
+		params.push(operator);
+	}
+	if(flightnum !== "")  {
+		query += "AND \"flightnum\" = ? ";	
+		params.push(flightnum);
+	}
+	if(origin !== "")  {
+		query += "AND \"origin\" = ? ";	
+		params.push(origin);
+	}
+	if(departure !== "")  {
+		query += "AND \"departure\" = ? ";	
+		params.push(departure);
+	}
+	if(depdate !== "")  {
+		query += "AND to_date(\"depdatetime\") = ? ";	
+		params.push(depdate);
+	}
+	if(arrdate !== "")  {
+		query += "AND to_date(\"arrdatetime\") = ? ";	
+		params.push(arrdate);
+	}
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "SELECT * FROM \"model.AvailableFlight\" (\"CUSTOMERIDFILTER\" => ?)", [user.id]);
+		return dbHelper.query(req.db, query, [user.id]);
 	}).then((data) => {
 		res.status(200).send({
 			data: data
