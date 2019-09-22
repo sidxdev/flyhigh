@@ -109,7 +109,7 @@ context model {
 
     view AvailableFlight
         with parameters
-            customeridfilter : UUID
+            CUSTOMERIDFILTER : UUID
     	as select from FlightItinerary as I
         left join   Flight as F on
             I.flight.id <> F.id
@@ -124,7 +124,7 @@ context model {
         }
         where
         	CURRENT_TIMESTAMP < F.depdatetime
-            and I.customer.id = :customeridfilter;
+            and I.customer.id = :CUSTOMERIDFILTER;
 
     view PassengerList as
         select from FlightItinerary
