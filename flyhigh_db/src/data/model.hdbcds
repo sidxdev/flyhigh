@@ -107,24 +107,39 @@ context model {
             D.customerSpecific.id            as customerid
         };
 
+    view CustomerTrip
+        with parameters
+            CUSTOMERIDFILTER : UUID
+    as
+        select from FlightItinerary as I
+        {
+            I.flight.operator         as operator,
+            I.flight.flightnum        as flightnum,
+            I.flight.origin.iata      as origin,
+            I.flight.destination.iata as destination,
+            I.flight.depdatetime      as depdatetime,
+            I.flight.arrdatetime      as arrdatetime
+        };
+
     view AvailableFlight
         with parameters
             CUSTOMERIDFILTER : UUID
-    	as select from FlightItinerary as I
-        left join   Flight as F on
+    as
+        select from FlightItinerary as I
+        left join   Flight as F          on
             I.flight.id <> F.id
         {
-        	F.id,
-        	F.operator,
-        	F.flightnum,
-        	F.origin.iata as "origin",
-        	F.destination.iata as "destination",
+            F.id,
+            F.operator,
+            F.flightnum,
+            F.origin.iata      as origin,
+            F.destination.iata as destination,
             F.depdatetime,
             F.arrdatetime
         }
         where
-        	CURRENT_TIMESTAMP < F.depdatetime
-            and I.customer.id = :CUSTOMERIDFILTER;
+                current_timestamp < F.depdatetime
+            and I.customer.id     = :CUSTOMERIDFILTER;
 
     view PassengerList as
         select from FlightItinerary
