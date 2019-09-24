@@ -38,10 +38,22 @@ router.get("/discounts", (req, res) => {
 
 // Get full catalog with discounts
 router.get("/catalog", (req, res) => {
+	let params = [];
+	let query = "SELECT * FROM \"model.CatalogDiscount\" WHERE \"customerid\" IS NULL OR \"customerid\" = ?";
+	if (req.query.location && req.query.location !== "") {
+		query += " AND \"location\" = ?";
+		params.push(req.query.location);
+	}
+	if (req.query.search && req.query.search !== "") {
+		query += " AND (CONTAINS (\"description\", ?, FUZZY (0.8)) OR CONTAINS (\"model\", ?, FUZZY (0.8)) OR CONTAINS (\"category\", ?, FUZZY (0.8)))";
+		params.push(req.query.search);
+		params.push(req.query.search);
+		params.push(req.query.search);
+	}
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "SELECT * FROM \"model.CatalogDiscount\" WHERE \"customerid\" IS NULL OR \"customerid\" = ?", [user.id]);
+		return dbHelper.query(req.db, query, [user.id]);
 	}).then((data) => {
-		res.status(201).send({
+		res.status(200).send({
 			data: data
 		});
 	});

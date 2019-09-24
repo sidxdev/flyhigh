@@ -15,18 +15,52 @@ sap.ui.define([
 
 		onInit: function () {
 			that = this;
-			that._fetchCatalog();
 		},
 
 		onNavBack: function (oEvent) {
 			Navigator.navigate(that, "Customer");
 		},
+		
+		onCatalogItemPress: function (oEvent) {
+			var oTable = that.getView().byId("catalogContainer");
+			var sItemPath = oEvent.getParameter("listItem").getBindingContextPath() + "/discounts";
+			var aDiscounts = oTable.getModel().getProperty(sItemPath);
+			if (aDiscounts) {
+				that._getViewItemDiscountsDialog().open();
+				var oViewItemDiscountsTable = sap.ui.getCore().byId("tableItemDiscounts");
+				var oViewItemDiscountsTitle = sap.ui.getCore().byId("viewItemDiscountsTitle");
+				oViewItemDiscountsTitle.setText("Active Discounts for " + aDiscounts[0].model);
+				oViewItemDiscountsTable.setModel(new JSONModel(aDiscounts));
+				oViewItemDiscountsTable.bindItems("/", that._tableItemDiscountsRowTemplate());
+			}
+		},
 
-		_fetchCatalog: function () {
+		_getViewItemDiscountsDialog: function () {
+			if (!that._oViewItemDiscountsDialog) {
+				that._oViewItemDiscountsDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.vendorItemDiscounts", that);
+			}
+			return that._oViewItemDiscountsDialog;
+		},
+
+		_destroyViewItemDiscountsDialog: function () {
+			if (that._oViewItemDiscountsDialog) {
+				that._oViewItemDiscountsDialog.destroy();
+				that._oViewItemDiscountsDialog = null;
+			}
+		},
+
+		onViewItemDiscountsButton: function (oEvent) {
+			that._destroyViewItemDiscountsDialog();
+		},
+
+		onPressSearch: function (oEvent) {
+			var sLocation = that.byId("inputLocation");
+			var sSearch = that.byId("inputSearch");
+			
 			oBusyDialog.open();
 			var oTable = that.getView().byId("catalogContainer");
 
-			Service.get("/api/customer/catalog").then(function (oData) {
+			Service.get(`/api/customer/catalog?location=${sLocation}&?search=${sSearch}`).then(function (oData) {
 				oData.data = that._aggregateDiscounts(oData.data);
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
