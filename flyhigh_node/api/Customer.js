@@ -41,7 +41,9 @@ router.get("/catalog", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, "SELECT * FROM \"model.CatalogDiscount\" WHERE \"customerid\" IS NULL OR \"customerid\" = ?", [user.id]);
 	}).then((data) => {
-		res.status(201).send(data);
+		res.status(201).send({
+			data: data
+		});
 	});
 });
 
@@ -60,28 +62,28 @@ router.get("/trip", (req, res) => {
 router.get("/flight", (req, res) => {
 	let query = "SELECT * FROM \"model.AvailableFlight\" (\"CUSTOMERIDFILTER\" => ?) WHERE 1=1 ";
 	let params = [];
-	if(req.query.airlines && req.query.airlines !== "")  {
-		query += "AND \"operator\" = ? ";	
+	if (req.query.airlines && req.query.airlines !== "") {
+		query += "AND \"operator\" = ? ";
 		params.push(req.query.airlines);
 	}
-	if(req.query.flightnum && req.query.flightnum !== "")  {
-		query += "AND \"flightnum\" = ? ";	
+	if (req.query.flightnum && req.query.flightnum !== "") {
+		query += "AND \"flightnum\" = ? ";
 		params.push(req.query.flightnum);
 	}
-	if(req.query.origin && req.query.origin !== "")  {
-		query += "AND \"origin\" = ? ";	
+	if (req.query.origin && req.query.origin !== "") {
+		query += "AND \"origin\" = ? ";
 		params.push(req.query.origin);
 	}
-	if(req.query.departure && req.query.departure !== "")  {
-		query += "AND \"departure\" = ? ";	
+	if (req.query.departure && req.query.departure !== "") {
+		query += "AND \"departure\" = ? ";
 		params.push(req.query.departure);
 	}
-	if(req.params.depdate && req.params.depdate !== "")  {
-		query += "AND to_date(\"depdatetime\") = ? ";	
+	if (req.params.depdate && req.params.depdate !== "") {
+		query += "AND to_date(\"depdatetime\") = ? ";
 		params.push(req.query.depdate);
 	}
-	if(req.params.arrdate && req.params.arrdate !== "")  {
-		query += "AND to_date(\"arrdatetime\") = ? ";	
+	if (req.params.arrdate && req.params.arrdate !== "") {
+		query += "AND to_date(\"arrdatetime\") = ? ";
 		params.push(req.query.arrdate);
 	}
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {

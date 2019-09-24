@@ -60,6 +60,9 @@ sap.ui.define([
 						text: "{discountPrice}"
 					}),
 					new sap.m.Text({
+						text: "{location}"
+					}),
+					new sap.m.Text({
 						text: "{enddate}"
 					})
 				]

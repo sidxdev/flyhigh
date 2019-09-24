@@ -6,7 +6,7 @@ context model {
     type Email : String(30);
     type Gate : String(3);
     type FlightOperator : String(2);
-    type FlightNumber : Integer;
+    type FlightNumber : String(3;
     type SKU : String(30);
 
     entity Role {
@@ -95,7 +95,7 @@ context model {
             C.model,
             C.category,
             C.vendor.id                      as vendorid,
-            C.vendor.location.iata,
+            C.vendor.location.iata           as location,
             C.vendor.location.localcurrency,
             C.retailPrice,
             C.description,
