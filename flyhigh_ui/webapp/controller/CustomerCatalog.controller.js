@@ -21,8 +21,8 @@ sap.ui.define([
 		onNavBack: function (oEvent) {
 			Navigator.navigate(that, "Customer");
 		},
-		
-		_fetchCatalog: function() {
+
+		_fetchCatalog: function () {
 			oBusyDialog.open();
 			var oTable = that.getView().byId("catalogContainer");
 
@@ -34,11 +34,30 @@ sap.ui.define([
 				oBusyDialog.close();
 			});
 		},
-		
-		_aggregateDiscounts: function(oData) {
-			return oData;
+
+		_aggregateDiscounts: function (oData) {
+			return oData.reduce(function (aAgg, oRow) {
+				var iIndex = aAgg.findIndex(function (oAgg) {
+					return oAgg.catalogid === oRow.catalogid;
+				});
+				if (iIndex === -1) {
+					if (oRow.discountid) {
+						oRow.discounts = [oRow];
+						oRow.discountCount = 1;
+					}
+					aAgg.push(oRow);
+				} else {
+					if (!aAgg[iIndex].hasOwnProperty("discounts")) {
+						aAgg[iIndex].discounts = [];
+						aAgg[iIndex].discountCount = 0;
+					}
+					aAgg[iIndex].discounts.push(oRow);
+					aAgg[iIndex].discountCount += 1;
+				}
+				return aAgg;
+			}, []);
 		},
-		
+
 		_tableCatalogRowTemplate: function () {
 			return new sap.m.ColumnListItem({
 				type: "Active",
@@ -55,12 +74,10 @@ sap.ui.define([
 					new sap.m.Text({
 						text: "{description}"
 					}),
-					new sap.m.Button({
-						icon: "sap-icon://add",
-						text: "{discountCount}",
-						press: that.onAddDiscount
+					new sap.m.Text({
+						text: "{discountCount}"
 					})
-				] 
+				]
 			});
 		}
 

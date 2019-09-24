@@ -6,8 +6,8 @@ context model {
     type Email : String(30);
     type Gate : String(3);
     type FlightOperator : String(2);
-    type FlightNumber : String(3;
-    type SKU : String(30);
+    type FlightNumber : String(3);
+    type SKU : String(30); 
 
     entity Role {
         key email : Email;
