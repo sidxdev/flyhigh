@@ -45,14 +45,24 @@ router.get("/catalog", (req, res) => {
 		params.push(req.query.location);
 	}
 	if (req.query.search && req.query.search !== "") {
-		query += " AND (CONTAINS (\"description\", ?, FUZZY (0.8)) OR CONTAINS (\"model\", ?, FUZZY (0.8)) OR CONTAINS (\"category\", ?, FUZZY (0.8)))";
+		query +=
+			" AND (CONTAINS (\"description\", ?, FUZZY (0.8)) OR CONTAINS (\"model\", ?, FUZZY (0.8)) OR CONTAINS (\"category\", ?, FUZZY (0.8)))";
 		params.push(req.query.search);
 		params.push(req.query.search);
 		params.push(req.query.search);
 	}
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, query, [user.id]);
+		return dbHelper.query(req.db, query, [user.id, ...params]);
 	}).then((data) => {
+		data = data.map(d => {
+			if (d.discountid) {
+				d.retailPrice = isNaN(parseFloat(d.retailPrice)) ? 0 : parseFloat(d.retailPrice);
+				d.discountpercentage = isNaN(parseFloat(d.discountpercentage)) ? 0 : parseFloat(d.discountpercentage);
+				d.discountabsolute = isNaN(parseFloat(d.discountabsolute)) ? 0 : parseFloat(d.discountabsolute);
+				d.discountPrice = d.retailPrice * (1 - d.discountpercentage / 100) - d.discountabsolute;
+			}
+			return d;
+		});
 		res.status(200).send({
 			data: data
 		});

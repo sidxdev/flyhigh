@@ -37,7 +37,7 @@ sap.ui.define([
 
 		_getViewItemDiscountsDialog: function () {
 			if (!that._oViewItemDiscountsDialog) {
-				that._oViewItemDiscountsDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.vendorItemDiscounts", that);
+				that._oViewItemDiscountsDialog = sap.ui.xmlfragment("flyhigh.flyhigh_ui.fragment.customerViewDiscount", that);
 			}
 			return that._oViewItemDiscountsDialog;
 		},
@@ -54,13 +54,13 @@ sap.ui.define([
 		},
 
 		onPressSearch: function (oEvent) {
-			var sLocation = that.byId("inputLocation");
-			var sSearch = that.byId("inputSearch");
+			var sLocation = that.byId("inputLocation").getValue();
+			var sSearch = that.byId("inputSearch").getValue();
 			
 			oBusyDialog.open();
 			var oTable = that.getView().byId("catalogContainer");
 
-			Service.get(`/api/customer/catalog?location=${sLocation}&?search=${sSearch}`).then(function (oData) {
+			Service.get(`/api/customer/catalog?location=${sLocation}&search=${sSearch}`).then(function (oData) {
 				oData.data = that._aggregateDiscounts(oData.data);
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
@@ -91,11 +91,36 @@ sap.ui.define([
 				return aAgg;
 			}, []);
 		},
-
+		
+		_tableItemDiscountsRowTemplate: function () {
+			return new sap.m.ColumnListItem({
+				cells: [
+					new sap.m.Text({
+						text: "{startdate}"
+					}),
+					new sap.m.Text({
+						text: "{enddate}"
+					}),
+					new sap.m.Text({
+						text: "{discountabsolute}"
+					}),
+					new sap.m.Text({
+						text: "{discountpercentage}"
+					}),
+					new sap.m.Text({
+						text: "{discountPrice}"
+					})
+				]
+			});
+		},
+		
 		_tableCatalogRowTemplate: function () {
 			return new sap.m.ColumnListItem({
 				type: "Active",
 				cells: [
+					new sap.m.Text({
+						text: "{location}"
+					}),
 					new sap.m.Text({
 						text: "{model}"
 					}),

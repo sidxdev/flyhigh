@@ -104,6 +104,12 @@
 					"VendorCatalog"
 				]
 			}, {
+				"name": "VendorPassenger",
+				"pattern": "VendorPassenger",
+				"target": [
+					"VendorPassenger"
+				]
+			}, {
 				"name": "CustomerCatalog",
 				"pattern": "CustomerCatalog",
 				"target": [
