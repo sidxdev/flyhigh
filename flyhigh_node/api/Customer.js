@@ -39,7 +39,7 @@ router.get("/discounts", (req, res) => {
 // Get full catalog with discounts
 router.get("/catalog", (req, res) => {
 	let params = [];
-	let query = "SELECT * FROM \"model.CatalogDiscount\" WHERE \"customerid\" IS NULL OR \"customerid\" = ?";
+	let query = "SELECT * FROM \"model.CatalogDiscount\" WHERE (\"customerid\" IS NULL OR \"customerid\" = ?)";
 	if (req.query.location && req.query.location !== "") {
 		query += " AND \"location\" = ?";
 		params.push(req.query.location);
