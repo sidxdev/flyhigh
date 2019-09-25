@@ -1,0 +1,11 @@
+PROCEDURE "procedure::resetDB" () 
+LANGUAGE SQLSCRIPT 
+SQL SECURITY INVOKER 
+AS 
+BEGIN 
+   DELETE FROM "model.Role" WHERE "scope" <> 'USER' OR "scope" <> 'ADMIN';
+   DELETE FROM "model.Vendor";
+   DELETE FROM "model.Catalog";
+   DELETE FROM "model.FlightItinerary";
+   DELETE FROM "model.Discount";
+END;

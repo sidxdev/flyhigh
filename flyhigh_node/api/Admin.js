@@ -78,4 +78,16 @@ router.get("/access/:email/:role", (req, res) => {
 	});
 });
 
+router.get("/reset", (req, res) => {
+	dbHelper.query(req.db, "CALL \"procedure::resetDB\" ()", []).then(data => {
+		res.status(201).send({
+			data: data
+		});
+	}).catch(err => {
+		res.status(500).send({
+			error: err
+		});
+	});
+});
+
 module.exports = router;
