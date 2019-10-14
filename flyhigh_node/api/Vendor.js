@@ -151,8 +151,8 @@ router.post("/paxdiscount", (req, res) => {
 			req.body.catalogids.forEach(catalogid => {
 				let uuid = uuidv4();
 				promises.push(dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?, ?)", [uuid, catalogid,
-					req.body.datetime,
-					req.body.datetime,
+					req.body.datetime.slice(0,10) + " 00:00:00",
+					req.body.datetime.slice(0,10) + " 23:59:59",
 					req.body.absdisc,
 					req.body.perdisc,
 					customer.id
