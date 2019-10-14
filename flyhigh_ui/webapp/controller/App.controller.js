@@ -40,7 +40,7 @@ sap.ui.define([
 
 		onPressVendor: function (oEvent) {
 			oBusyDialog.open();
-			Service.register("VENDOR", {iata: "DEL"}).then(function () {
+			Service.register("VENDOR", {iata: "BLR"}).then(function () {
 				Navigator.navigate(that, "Vendor");
 			}).catch(function (oError) {
 				MessageBox.show(oError.error);

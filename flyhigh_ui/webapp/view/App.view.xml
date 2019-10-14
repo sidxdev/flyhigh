@@ -14,7 +14,7 @@
 						</GenericTile>
 						<GenericTile header="Vendor" class="sapUiTinyMargin fullWidth" subheader="Start your journey as a Vendor" press="onPressVendor">
 							<TileContent>
-								<Label text="Default Location DEL"/>
+								<Label text="Default Location BLR"/>
 							</TileContent>
 						</GenericTile>
 					</c:VBSpan>

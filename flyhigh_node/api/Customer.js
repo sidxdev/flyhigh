@@ -84,9 +84,9 @@ router.get("/trip", (req, res) => {
 router.get("/flight", (req, res) => {
 	let query = "SELECT * FROM \"model.AvailableFlight\" (\"CUSTOMERIDFILTER\" => ?) WHERE 1=1 ";
 	let params = [];
-	if (req.query.airlines && req.query.airlines !== "") {
+	if (req.query.airline && req.query.airline !== "") {
 		query += "AND \"operator\" = ? ";
-		params.push(req.query.airlines);
+		params.push(req.query.airline);
 	}
 	if (req.query.flightnum && req.query.flightnum !== "") {
 		query += "AND \"flightnum\" = ? ";
