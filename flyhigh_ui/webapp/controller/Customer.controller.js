@@ -54,10 +54,7 @@ sap.ui.define([
 						text: "{discountPrice} ({retailPrice}) {localcurrency}"
 					}),
 					new sap.m.Text({
-						text: "{location}"
-					}),
-					new sap.m.Text({
-						text: "{enddate}"
+						text: "{location} till {enddate}"
 					})
 				]
 			});
