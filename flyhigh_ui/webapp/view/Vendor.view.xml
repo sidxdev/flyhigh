@@ -7,24 +7,24 @@
 				<c:VBSpan span="6">
 					<Title id="welcomeTitle"/>
 					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="250" displayTime="2500">
-						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog">
+						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog" backgroundImage="img/duty-free.jpg">
 							<TileContent footer="Items in Catalog">
 								<NumericContent id="catalogCount"/>
 							</TileContent>
 						</GenericTile>
-						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog">
+						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog" backgroundImage="img/duty-free.jpg">
 							<TileContent footer="Active Discounts">
 								<NumericContent id="discountCount"/>
 							</TileContent>
 						</GenericTile>
 					</SlideTile>
 					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="250" displayTime="2500">
-						<GenericTile header="Passenger Traffic" subheader="Inbound" class="fullWidth" press="onPressPassenger">
+						<GenericTile header="Passenger Traffic" subheader="Inbound" class="fullWidth" press="onPressPassenger" backgroundImage="img/airplane.jpg">
 							<TileContent>
 								<NumericContent id="passengerInboundCount"/>
 							</TileContent>
 						</GenericTile>
-						<GenericTile header="Passenger Traffic" subheader="Outbound" class="fullWidth" press="onPressPassenger">
+						<GenericTile header="Passenger Traffic" subheader="Outbound" class="fullWidth" press="onPressPassenger" backgroundImage="img/airplane.jpg">
 							<TileContent>
 								<NumericContent id="passengerOutboundCount"/>
 							</TileContent>
