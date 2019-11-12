@@ -16,11 +16,11 @@
 					<c:VBSpan span="6">
 						<Table id="catalogContainer" headerText="Catalog Items" itemPress="onCatalogItemPress">
 							<columns>
-								<Column hAlign="Center"><Text text="Location"/></Column>
+								<Column hAlign="Center"><Text text="Airport"/></Column>
 								<Column hAlign="Center"><Text text="Model"/></Column>
 								<Column hAlign="Center"><Text text="Price"/></Column>
 								<Column hAlign="Center"><Text text="Desc."/></Column>
-								<Column hAlign="Center"><Text text="Discounts"/></Column>
+								<Column hAlign="Center"><Text text="Disc."/></Column>
 							</columns>
 							<items/>
 						</Table>
