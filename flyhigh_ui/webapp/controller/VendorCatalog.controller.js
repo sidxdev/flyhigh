@@ -211,13 +211,10 @@ sap.ui.define([
 				type: "Active",
 				cells: [
 					new sap.m.Text({
-						text: "{model}"
+						text: "{model} ({category})"
 					}),
 					new sap.m.Text({
-						text: "{category}"
-					}),
-					new sap.m.Text({
-						text: "{retailPrice}"
+						text: "{retailPrice} {localcurrency}"
 					}),
 					new sap.m.Text({
 						text: "{description}"
@@ -235,10 +232,7 @@ sap.ui.define([
 			return new sap.m.ColumnListItem({
 				cells: [
 					new sap.m.Text({
-						text: "{startdate}"
-					}),
-					new sap.m.Text({
-						text: "{enddate}"
+						text: "{startdate} to {enddate}"
 					}),
 					new sap.m.Text({
 						text: "{discountabsolute}"

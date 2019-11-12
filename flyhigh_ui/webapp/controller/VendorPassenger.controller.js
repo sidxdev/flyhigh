@@ -154,7 +154,7 @@ sap.ui.define([
 					}),
 					new sap.m.Button({
 						icon: "sap-icon://add",
-						text: "Discount",
+						text: "Disc.",
 						press: that.onAddDiscount
 					})
 				]

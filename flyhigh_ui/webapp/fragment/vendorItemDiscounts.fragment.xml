@@ -12,8 +12,7 @@
 						</OverflowToolbar>
 					</headerToolbar>
 					<columns>
-						<Column hAlign="Center"><Text text="Start Date"/></Column>
-						<Column hAlign="Center"><Text text="End Date"/></Column>
+						<Column hAlign="Center"><Text text="Validity"/></Column>
 						<Column hAlign="Center"><Text text="Absolute Discount"/></Column>
 						<Column hAlign="Center"><Text text="Percentage Discount"/></Column>
 					</columns>
