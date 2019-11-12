@@ -46,12 +46,12 @@ sap.ui.define([
 				cells: [
 					new sap.m.Text({
 						text: "{model} ({category})"
-					})
+					}),
 					new sap.m.Text({
 						text: "{description}"
 					}),
 					new sap.m.Text({
-						text: "{discountPrice} ({retailPrice}) localcurrency"
+						text: "{discountPrice} ({retailPrice}) {localcurrency}"
 					}),
 					new sap.m.Text({
 						text: "{location}"
