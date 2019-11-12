@@ -11,10 +11,8 @@
 					<Table id="discountTableContainer" headerText="Active Discounts for you" itemPress="onDiscountItemPress">
 						<columns>
 							<Column hAlign="Center"><Text text="Model"/></Column>
-							<Column hAlign="Center"><Text text="Category"/></Column>
 							<Column hAlign="Center"><Text text="Desc."/></Column>
-							<Column hAlign="Center"><Text text="Price"/></Column>
-							<Column hAlign="Center"><Text text="Discount Price"/></Column>
+							<Column hAlign="Center"><Text text="Discount (Original) Price"/></Column>
 							<Column hAlign="Center"><Text text="Location"/></Column>
 							<Column hAlign="Center"><Text text="End Date"/></Column>
 						</columns>
