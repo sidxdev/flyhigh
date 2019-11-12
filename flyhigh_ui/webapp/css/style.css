@@ -17,3 +17,7 @@
 #addCustomerTripContainer {
     padding: 1rem !important;
 }
+
+.sapMGTHdrContent > span, .sapMGTSubHdrTxt > span {
+	color: white;
+}
