@@ -96,10 +96,7 @@ sap.ui.define([
 			return new sap.m.ColumnListItem({
 				cells: [
 					new sap.m.Text({
-						text: "{startdate}"
-					}),
-					new sap.m.Text({
-						text: "{enddate}"
+						text: "{startdate} till {enddate}"
 					}),
 					new sap.m.Text({
 						text: "{discountabsolute}"
@@ -108,7 +105,7 @@ sap.ui.define([
 						text: "{discountpercentage}"
 					}),
 					new sap.m.Text({
-						text: "{discountPrice}"
+						text: "{discountPrice} {localcurrency}"
 					})
 				]
 			});

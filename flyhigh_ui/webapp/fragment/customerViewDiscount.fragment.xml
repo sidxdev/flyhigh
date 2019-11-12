@@ -12,11 +12,10 @@
 						</OverflowToolbar>
 					</headerToolbar>
 					<columns>
-						<Column hAlign="Center"><Text text="Start Date"/></Column>
-						<Column hAlign="Center"><Text text="End Date"/></Column>
-						<Column hAlign="Center"><Text text="Absolute Discount"/></Column>
-						<Column hAlign="Center"><Text text="Percentage Discount"/></Column>
-						<Column hAlign="Center"><Text text="Discounted Price"/></Column>
+						<Column hAlign="Center"><Text text="Validity"/></Column>
+						<Column hAlign="Center"><Text text="Abs. Disc."/></Column>
+						<Column hAlign="Center"><Text text="Per. Disc."/></Column>
+						<Column hAlign="Center"><Text text="Disc. Price"/></Column>
 					</columns>
 					<items/>
 				</Table>
