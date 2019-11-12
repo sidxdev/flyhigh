@@ -46,7 +46,7 @@ router.get("/catalog", (req, res) => {
 	}
 	if (req.query.search && req.query.search !== "") {
 		query +=
-			" AND (CONTAINS (\"description\", ?, FUZZY (0.8)) OR CONTAINS (\"model\", ?, FUZZY (0.8)) OR CONTAINS (\"category\", ?, FUZZY (0.8)))";
+			" AND (CONTAINS (\"description\", ?, FUZZY (0.1)) OR CONTAINS (\"model\", ?, FUZZY (0.1)) OR CONTAINS (\"category\", ?, FUZZY (0.1)))";
 		params.push(req.query.search);
 		params.push(req.query.search);
 		params.push(req.query.search);
