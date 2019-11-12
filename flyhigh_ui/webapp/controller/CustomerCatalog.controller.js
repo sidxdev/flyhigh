@@ -122,13 +122,10 @@ sap.ui.define([
 						text: "{location}"
 					}),
 					new sap.m.Text({
-						text: "{model}"
+						text: "{model} ({category})"
 					}),
 					new sap.m.Text({
-						text: "{category}"
-					}),
-					new sap.m.Text({
-						text: "{retailPrice}"
+						text: "{retailPrice} {localcurrency}"
 					}),
 					new sap.m.Text({
 						text: "{description}"
