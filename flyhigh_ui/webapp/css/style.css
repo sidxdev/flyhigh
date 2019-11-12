@@ -18,6 +18,6 @@
     padding: 1rem !important;
 }
 
-.sapMGTHdrContent > span, .sapMGTSubHdrTxt > span, .sapMGTContent div {
-	color: white;
+.sapMGTHdrTxt > span, .sapMGTSubHdrTxt > span, .sapMGTContent div {
+	color: white !important;
 }
