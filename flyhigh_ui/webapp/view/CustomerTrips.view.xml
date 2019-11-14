@@ -4,8 +4,8 @@
 		<Page title="Trips" showNavButton="true" navButtonPress="onNavBack">
 			<content>
 				<l:Grid position="Center" id="gridContainer">
-					<c:VBSpan span="3"/>
-					<c:VBSpan span="6">
+					<c:VBSpan span="2"/>
+					<c:VBSpan span="8">
 						<Table id="tripContainer" fixedLayout="false">
 							<headerToolbar>
 								<OverflowToolbar>

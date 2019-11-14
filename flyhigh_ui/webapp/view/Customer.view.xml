@@ -6,8 +6,8 @@
 		</headerContent>
 		<content>
 			<l:Grid position="Center" id="gridContainer">
-				<c:VBSpan span="3"/>
-				<c:VBSpan span="6">
+				<c:VBSpan span="2"/>
+				<c:VBSpan span="8">
 					<Title id="welcomeTitle"/>
 					<GenericTile class="fullWidth sapUiTinyMargin" header="Trips" subheader="Browse your Trips" press="onPressTrips"
 						backgroundImage="img/airplane.jpg"/>

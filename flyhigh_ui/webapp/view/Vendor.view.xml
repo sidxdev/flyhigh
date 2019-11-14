@@ -6,8 +6,8 @@
 		</headerContent>
 		<content>
 			<l:Grid position="Center" id="gridContainer">
-				<c:VBSpan span="3"/>
-				<c:VBSpan span="6">
+				<c:VBSpan span="2"/>
+				<c:VBSpan span="8">
 					<Title id="welcomeTitle"/>
 					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="250" displayTime="2500">
 						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog" backgroundImage="img/duty-free.jpg">

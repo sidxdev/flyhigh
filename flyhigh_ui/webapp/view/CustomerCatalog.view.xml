@@ -4,7 +4,7 @@
 		<Page title="Catalog" showNavButton="true" navButtonPress="onNavBack">
 			<content>
 				<l:Grid position="Center" id="gridContainer">
-					<c:VBSpan span="3"/>
+					<c:VBSpan span="2"/>
 					<c:VBSpan>
 						<Label text="Location"/>
 						<Input id="inputLocation"/>
@@ -12,9 +12,9 @@
 						<Input id="inputSearch"/>
 						<Button text="Search" press="onPressSearch"/>
 					</c:VBSpan>
-					<c:VBSpan span="3"/>
-					<c:VBSpan span="6">
-						<Table id="catalogContainer" headerText="Catalog Items" itemPress="onCatalogItemPress" fixedLayout="false">
+					<c:VBSpan span="2"/>
+					<c:VBSpan span="8">
+						<Table id="catalogContainer" headerText="Catalog Items" itemPress="onCatalogItemPress">
 							<columns>
 								<Column hAlign="Center"><Text text="Airport"/></Column>
 								<Column hAlign="Center"><Text text="Model"/></Column>
