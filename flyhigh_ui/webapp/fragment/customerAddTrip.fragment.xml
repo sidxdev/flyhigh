@@ -9,8 +9,8 @@
 				<Input id="inputFlightnum" type="Number"/>
 				<Label text="Origin"/>
 				<Input id="inputOrigin"/>
-				<Label text="Departure"/>
-				<Input id="inputDeparture"/>
+				<Label text="Destination"/>
+				<Input id="inputDestination"/>
 				<Label text="Departure Date"/>
 				<DatePicker id="inputDepDate" valueFormat="yyyy-MM-dd"/>
 				<Label text="Arrival Date"/>

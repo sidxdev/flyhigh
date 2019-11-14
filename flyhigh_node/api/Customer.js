@@ -96,9 +96,9 @@ router.get("/flight", (req, res) => {
 		query += "AND \"origin\" = ? ";
 		params.push(req.query.origin);
 	}
-	if (req.query.departure && req.query.departure !== "") {
-		query += "AND \"departure\" = ? ";
-		params.push(req.query.departure);
+	if (req.query.destination && req.query.destination !== "") {
+		query += "AND \"destination\" = ? ";
+		params.push(req.query.destination);
 	}
 	if (req.params.depdate && req.params.depdate !== "") {
 		query += "AND to_date(\"depdatetime\") = ? ";

@@ -72,13 +72,13 @@ sap.ui.define([
 			var sAirlines = sap.ui.getCore().byId("inputAirlines").getValue();
 			var sFlightnum = sap.ui.getCore().byId("inputFlightnum").getValue();
 			var sOrigin = sap.ui.getCore().byId("inputOrigin").getValue();
-			var sDeparture = sap.ui.getCore().byId("inputDeparture").getValue();
+			var sDestination = sap.ui.getCore().byId("inputDestination").getValue();
 			var sDepDate = sap.ui.getCore().byId("inputDepDate").getValue();
 			var sArrDate = sap.ui.getCore().byId("inputArrDate").getValue();
 
 			oBusyDialog.open();
 			Service.get(
-				`/api/customer/flight?airline=${sAirlines}&flightnum=${sFlightnum}&origin=${sOrigin}&departure=${sDeparture}&depdate=${sDepDate}&arrdate=${sArrDate}`
+				`/api/customer/flight?airline=${sAirlines}&flightnum=${sFlightnum}&origin=${sOrigin}&destination=${sDestination}&depdate=${sDepDate}&arrdate=${sArrDate}`
 			).then(function (oData) {
 				oTable.setModel(new JSONModel(oData));
 				oTable.bindItems("/data", that._tableCatalogRowTemplate());
