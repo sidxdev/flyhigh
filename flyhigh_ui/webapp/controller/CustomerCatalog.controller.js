@@ -96,7 +96,7 @@ sap.ui.define([
 			return new sap.m.ColumnListItem({
 				cells: [
 					new sap.m.Text({
-						text: "{startdate} till {enddate}"
+						text: "{= ${startdate}.substr(0,10)} till {= ${enddate}.substr(0,10)}"
 					}),
 					new sap.m.Text({
 						text: "{discountabsolute}"
