@@ -1,3 +1,4 @@
+
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flyhigh.flyhigh_ui.controller.VendorCatalog"
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:c="flyhigh.flyhigh_ui.util">
 	<Page title="Vendor - Catalog" showNavButton="true" navButtonPress="onNavBack">
@@ -5,7 +6,7 @@
 			<l:Grid position="Center" id="gridContainer">
 				<c:VBSpan span="3"/>
 				<c:VBSpan span="6">
-					<Table id="tableContainer" itemPress="onCatalogItemPress">
+					<Table id="tableContainer" itemPress="onCatalogItemPress" fixedLayout="false">
 						<headerToolbar>
 							<OverflowToolbar>
 								<content>
@@ -19,7 +20,7 @@
 							<Column hAlign="Center"><Text text="Model"/></Column>
 							<Column hAlign="Center"><Text text="Price"/></Column>
 							<Column hAlign="Center"><Text text="Desc."/></Column>
-							<Column hAlign="Center"><Text text="Discounts"/></Column>
+							<Column hAlign="Center"><Text text="Disc."/></Column>
 						</columns>
 						<items/>
 					</Table>

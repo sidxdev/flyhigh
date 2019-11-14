@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:c="flyhigh.flyhigh_ui.util">
-	<Dialog id="addVendorPassengerDiscount" title="Add disocunts for Flight">
+	<Dialog id="addVendorPassengerDiscount" title="Add discounts for Flight">
 		<content>
 			<c:VBSpan id="addVendorPassengerDiscountContainer">
 				<Label text="Flight"/>
@@ -10,10 +10,9 @@
 				<Label text="Percentage Discount" required="true"/>
 				<Input id="inputPerDisc" type="Number" required="true" change="onChangeInput"/>
 				<Label id="addVendorPassengerDiscountFlightid" visible="false"/>
-				<Table id="addVendorPassengerDiscountTableContainer" mode="MultiSelect">
+				<Table id="addVendorPassengerDiscountTableContainer" mode="MultiSelect" fixedLayout="false">
 					<columns>
 						<Column hAlign="Center"><Text text="Model"/></Column>
-						<Column hAlign="Center"><Text text="Category"/></Column>
 						<Column hAlign="Center"><Text text="Price"/></Column>
 						<Column hAlign="Center"><Text text="Desc."/></Column>
 					</columns>

@@ -2,7 +2,7 @@
 	<Dialog title="Your Discounts">
 		<content>
 			<c:VBSpan id="viewItemDiscountsContainer">
-				<Table id="tableItemDiscounts">
+				<Table id="tableItemDiscounts" fixedLayout="false">
 					<headerToolbar>
 						<OverflowToolbar>
 							<content>

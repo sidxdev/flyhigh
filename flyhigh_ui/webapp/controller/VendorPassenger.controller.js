@@ -165,10 +165,7 @@ sap.ui.define([
 			return new sap.m.ColumnListItem({
 				cells: [
 					new sap.m.Text({
-						text: "{model}"
-					}),
-					new sap.m.Text({
-						text: "{category}"
+						text: "{model} ({category})"
 					}),
 					new sap.m.Text({
 						text: "{retailPrice}"

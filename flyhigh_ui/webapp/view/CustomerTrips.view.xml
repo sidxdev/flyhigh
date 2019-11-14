@@ -6,7 +6,7 @@
 				<l:Grid position="Center" id="gridContainer">
 					<c:VBSpan span="3"/>
 					<c:VBSpan span="6">
-						<Table id="tripContainer">
+						<Table id="tripContainer" fixedLayout="false">
 							<headerToolbar>
 								<OverflowToolbar>
 									<content>

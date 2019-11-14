@@ -2,7 +2,7 @@
 	<Dialog title="Your Discounts">
 		<content>
 			<c:VBSpan id="viewItemDiscountsContainer">
-				<Table id="tableItemDiscounts" mode="Delete" delete="onDeleteItemDiscount">
+				<Table id="tableItemDiscounts" mode="Delete" delete="onDeleteItemDiscount" fixedLayout="false">
 					<headerToolbar>
 						<OverflowToolbar>
 							<content>
@@ -13,8 +13,8 @@
 					</headerToolbar>
 					<columns>
 						<Column hAlign="Center"><Text text="Validity"/></Column>
-						<Column hAlign="Center"><Text text="Absolute Discount"/></Column>
-						<Column hAlign="Center"><Text text="Percentage Discount"/></Column>
+						<Column hAlign="Center"><Text text="Abs. Disc."/></Column>
+						<Column hAlign="Center"><Text text="Per. Disc."/></Column>
 					</columns>
 					<items/>
 				</Table>

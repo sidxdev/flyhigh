@@ -12,7 +12,7 @@
 					<GenericTile class="fullWidth sapUiTinyMargin" header="Trips" subheader="Browse your Trips" press="onPressTrips"
 						backgroundImage="img/airplane.jpg"/>
 					<GenericTile header="Browse the Catalog" class="fullWidth sapUiTinyMargin" press="onPressCatalog" backgroundImage="img/duty-free.jpg"/>
-					<Table id="discountTableContainer" headerText="Active Discounts for you" itemPress="onDiscountItemPress">
+					<Table id="discountTableContainer" headerText="Active Discounts for you" itemPress="onDiscountItemPress" fixedLayout="false">
 						<columns>
 							<Column hAlign="Center"><Text text="Model"/></Column>
 							<Column hAlign="Center"><Text text="Desc."/></Column>

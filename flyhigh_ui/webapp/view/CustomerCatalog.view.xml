@@ -14,7 +14,7 @@
 					</c:VBSpan>
 					<c:VBSpan span="3"/>
 					<c:VBSpan span="6">
-						<Table id="catalogContainer" headerText="Catalog Items" itemPress="onCatalogItemPress">
+						<Table id="catalogContainer" headerText="Catalog Items" itemPress="onCatalogItemPress" fixedLayout="false">
 							<columns>
 								<Column hAlign="Center"><Text text="Airport"/></Column>
 								<Column hAlign="Center"><Text text="Model"/></Column>

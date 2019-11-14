@@ -16,7 +16,7 @@
 				<Label text="Arrival Date"/>
 				<DatePicker id="inputArrDate" valueFormat="yyyy-MM-dd"/>
 				<Button text="Search" press="addCustomerTripSearch"/>
-				<Table id="addCustomerTripTable" mode="SingleSelectMaster" includeItemInSelection="true">
+				<Table id="addCustomerTripTable" mode="SingleSelectMaster" includeItemInSelection="true" fixedLayout="false">
 					<columns>
 						<Column hAlign="Center"><Text text="Flight"/></Column>
 						<Column hAlign="Center"><Text text="Sector"/></Column>
