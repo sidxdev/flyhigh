@@ -117,7 +117,7 @@ router.delete("/discount/:discountid", (req, res) => {
 router.get("/passenger", (req, res) => {
 	let location = null;
 	let query = "SELECT * FROM \"model.FlightPaxFull\" WHERE \"depdatetime\" > CURRENT_TIMESTAMP";
-	query += " AND (\"destination\" = ? OR \"origin\" = ?)";
+	query += " AND (\"destination\" = ? OR \"origin\" = ?) ORDER BY \"depdatetime\"";
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
 		location = user["location.iata"];
 		return dbHelper.query(req.db, query, [location, location]);

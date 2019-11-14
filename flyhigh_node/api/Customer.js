@@ -72,7 +72,7 @@ router.get("/catalog", (req, res) => {
 // Get current trips
 router.get("/trip", (req, res) => {
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "SELECT * FROM \"model.CustomerTrip\" (\"CUSTOMERIDFILTER\" => ?)", [user.id]);
+		return dbHelper.query(req.db, "SELECT * FROM \"model.CustomerTrip\" (\"CUSTOMERIDFILTER\" => ?) ORDER BY \"depdatetime\"", [user.id]);
 	}).then((data) => {
 		res.status(200).send({
 			data: data
@@ -108,6 +108,7 @@ router.get("/flight", (req, res) => {
 		query += "AND to_date(\"arrdatetime\") = ? ";
 		params.push(req.query.arrdate);
 	}
+	query += " ORDER BY \"depdatetime\"";
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, query, [user.id, ...params]);
 	}).then((data) => {
