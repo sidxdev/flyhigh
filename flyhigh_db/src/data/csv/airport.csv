@@ -1,8 +1,8 @@
 iata,name,localcurrency
-DEL,Indira Gandhi International Airport,INR
-DXB,Dubai Airport,AED
-LHR,London Heathrow,GBP
-SYD,Sydney Airport,AUD
-MEL,Melbourne Airport,AUD
-BLR,Bangalore Airport,INR
-LGW,London Gatwick,GBP
+DEL,Indira Gandhi International Airport,USD
+DXB,Dubai Airport,USD
+LHR,London Heathrow,USD
+SYD,Sydney Airport,USD
+MEL,Melbourne Airport,USD
+BLR,Bangalore Airport,USD
+LGW,London Gatwick,USD

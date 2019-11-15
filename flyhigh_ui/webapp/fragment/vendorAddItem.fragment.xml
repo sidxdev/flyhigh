@@ -10,7 +10,7 @@
 					<core:Item key="Laptop" text="Laptop"/>
 					<core:Item key="Mobile" text="Mobile"/>
 				</Select>
-				<Label text="Price" required="true"/>
+				<Label text="Price (USD)" required="true"/>
 				<Input id="inputPrice" type="Number" required="true" change="onChangeInput"/>
 				<Label text="Description" required="true"/>
 				<Input id="inputDesc" required="true" change="onChangeInput"/>
