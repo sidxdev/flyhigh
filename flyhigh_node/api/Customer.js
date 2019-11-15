@@ -46,9 +46,7 @@ router.get("/catalog", (req, res) => {
 	}
 	if (req.query.search && req.query.search !== "") {
 		query +=
-			" AND (CONTAINS (\"description\", ?, FUZZY (0.5)) OR CONTAINS (\"model\", ?, FUZZY (0.5)) OR CONTAINS (\"category\", ?, FUZZY (0.5)))";
-		params.push(req.query.search);
-		params.push(req.query.search);
+			" AND CONTAINS ((\"description\", \"model\", \"category\"), ?, FUZZY(0.2))";
 		params.push(req.query.search);
 	}
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
