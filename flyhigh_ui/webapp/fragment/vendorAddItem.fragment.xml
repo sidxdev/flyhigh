@@ -5,7 +5,7 @@
 				<Label text="Model" required="true"/>
 				<Input id="inputModel" required="true" change="onChangeInput"/>
 				<Label text="Category" required="true"/>
-				<Select id="inputCategory" selectedKey="0">
+				<Select id="inputCategory">
 					<core:Item key="Others" text="Others"/>
 					<core:Item key="Laptop" text="Laptop"/>
 					<core:Item key="Mobile" text="Mobile"/>

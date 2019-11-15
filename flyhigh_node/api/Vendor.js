@@ -90,8 +90,8 @@ router.post("/discount", (req, res) => {
 	dbHelper.query(req.db, "INSERT INTO \"model.Discount\" VALUES(?, ?, ?, ?, ?, ?, ?)", [uuid, req.body.catalogid,
 		req.body.startdate,
 		req.body.enddate,
-		req.body.absdisc,
 		req.body.perdisc,
+		req.body.absdisc,
 		null
 	]).then(() => {
 		res.status(201).send({});
