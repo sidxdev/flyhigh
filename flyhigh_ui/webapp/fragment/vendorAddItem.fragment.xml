@@ -5,7 +5,11 @@
 				<Label text="Model" required="true"/>
 				<Input id="inputModel" required="true" change="onChangeInput"/>
 				<Label text="Category" required="true"/>
-				<Input id="inputCategory" required="true" change="onChangeInput"/>
+				<Select id="inputCategory" selectedKey="0">
+					<core:Item key="Others" text="Others"/>
+					<core:Item key="Laptop" text="Laptop"/>
+					<core:Item key="Mobile" text="Mobile"/>
+				</Select>
 				<Label text="Price" required="true"/>
 				<Input id="inputPrice" type="Number" required="true" change="onChangeInput"/>
 				<Label text="Description" required="true"/>

@@ -52,7 +52,7 @@ sap.ui.define([
 			oBusyDialog.open();
 			Service.post("/api/vendor/catalog", {
 				model: oInputModel.getValue(),
-				category: oInputCategory.getValue(),
+				category: oInputCategory.getSelectedKey(),
 				retailPrice: oInputPrice.getValue(),
 				description: oInputDesc.getValue()
 			}).then(function () {
