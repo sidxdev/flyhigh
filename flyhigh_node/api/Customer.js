@@ -46,9 +46,10 @@ router.get("/catalog", (req, res) => {
 	}
 	if (req.query.search && req.query.search !== "") {
 		query +=
-			" AND CONTAINS ((\"description\", \"model\", \"category\"), ?, FUZZY(0.2))";
+			" AND CONTAINS ((\"description\", \"model\", \"category\"), ?, FUZZY(0.8))";
 		params.push(req.query.search);
 	}
+	query += " ORDER BY \"model\", \"retailPrice\"";
 	dbHelper.getUserFromEmail(req.db, "Customer", req.authInfo.userInfo.email).then(user => {
 		return dbHelper.query(req.db, query, [user.id, ...params]);
 	}).then((data) => {

@@ -2,6 +2,7 @@
 
 .fullWidth {
     width: -webkit-fill-available !important;
+    background-size: cover;
 }
 
 
