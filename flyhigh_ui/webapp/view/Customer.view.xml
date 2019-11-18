@@ -6,6 +6,7 @@
 		</headerContent>
 		<content>
 			<l:Grid position="Center" id="gridContainer">
+				<c:VBSpan/>
 				<c:VBSpan span="2"/>
 				<c:VBSpan span="8">
 					<Title id="welcomeTitle"/>

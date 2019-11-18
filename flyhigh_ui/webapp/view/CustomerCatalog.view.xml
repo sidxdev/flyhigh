@@ -5,13 +5,14 @@
 			<content>
 				<l:Grid position="Center" id="gridContainer">
 					<c:VBSpan span="2"/>
-					<c:VBSpan>
+					<c:VBSpan span="8">
 						<Label text="Location"/>
 						<Input id="inputLocation"/>
 						<Label text="Search term"/>
 						<Input id="inputSearch"/>
 						<Button text="Search" press="onPressSearch"/>
 					</c:VBSpan>
+					<c:VBSpan/>
 					<c:VBSpan span="2"/>
 					<c:VBSpan span="8">
 						<Table id="catalogContainer" headerText="Catalog Items" itemPress="onCatalogItemPress">
