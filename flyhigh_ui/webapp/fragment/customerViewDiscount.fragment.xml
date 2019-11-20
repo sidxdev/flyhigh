@@ -24,5 +24,8 @@
 		<beginButton>
 			<Button text="OK" press="onViewItemDiscountsButton"/>
 		</beginButton>
+		<endButton>
+			<Button text="Buy"/>
+		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
