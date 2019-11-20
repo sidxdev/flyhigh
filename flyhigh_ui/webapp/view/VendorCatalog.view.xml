@@ -4,8 +4,7 @@
 	<Page title="Vendor - Catalog" showNavButton="true" navButtonPress="onNavBack">
 		<content>
 			<l:Grid position="Center" id="gridContainer">
-				<c:VBSpan span="2"/>
-				<c:VBSpan span="8">
+				<c:VBSpan>
 					<Table id="tableContainer" itemPress="onCatalogItemPress" fixedLayout="false">
 						<headerToolbar>
 							<OverflowToolbar>
