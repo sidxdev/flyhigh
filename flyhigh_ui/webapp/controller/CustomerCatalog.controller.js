@@ -78,6 +78,7 @@ sap.ui.define([
 					if (oRow.discountid) {
 						oRow.discounts = [oRow];
 						oRow.discountCount = 1;
+						oRow.bestDiscount = oRow.discountPrice;
 					}
 					aAgg.push(oRow);
 				} else {
@@ -87,6 +88,7 @@ sap.ui.define([
 					}
 					aAgg[iIndex].discounts.push(oRow);
 					aAgg[iIndex].discountCount += 1;
+					oRow.bestDiscount = oRow.bestDiscount < oRow.discountPrice ? oRow.bestDiscount : oRow.discountPrice;
 				}
 				return aAgg;
 			}, []);
@@ -128,7 +130,7 @@ sap.ui.define([
 						text: "{description}"
 					}),
 					new sap.m.Text({
-						text: "{discountCount}"
+						text: "{bestDiscount}"
 					})
 				]
 			});
