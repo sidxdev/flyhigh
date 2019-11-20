@@ -11,12 +11,12 @@
 				<c:VBSpan span="8">
 					<Title id="welcomeTitle"/>
 					<SlideTile class="sapUiTinyMargin fullWidth" transitionTime="250" displayTime="2500">
-						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog" backgroundImage="img/duty-free.jpg">
+						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog" backgroundImage="img/duty-free-vendor.jpg">
 							<TileContent footer="Items in Catalog">
 								<NumericContent id="catalogCount"/>
 							</TileContent>
 						</GenericTile>
-						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog" backgroundImage="img/duty-free.jpg">
+						<GenericTile class="fullWidth" header="Catalog" subheader="Browse your Catalog" press="onPressCatalog" backgroundImage="img/duty-free-vendor.jpg">
 							<TileContent footer="Active Discounts">
 								<NumericContent id="discountCount"/>
 							</TileContent>

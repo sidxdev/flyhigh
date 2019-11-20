@@ -219,6 +219,9 @@ sap.ui.define([
 					new sap.m.Text({
 						text: "{description}"
 					}),
+					new sap.m.Text({
+						text: "{recentViews}"
+					}),
 					new sap.m.Button({
 						icon: "sap-icon://add",
 						text: "{discountCount}",

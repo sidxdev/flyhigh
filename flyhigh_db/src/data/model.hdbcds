@@ -7,7 +7,7 @@ context model {
     type Gate : String(3);
     type FlightOperator : String(2);
     type FlightNumber : String(3);
-    type SKU : String(30); 
+    type SKU : String(30);
 
     entity Role {
         key email : Email;
@@ -34,6 +34,7 @@ context model {
             vendor      : association[1, 1] to Vendor { id } not null;
             retailPrice : Amount                             not null;
             description : String(200);
+            recentViews : Integer                            default 0;
     };
 
     entity FlightItinerary {
@@ -99,6 +100,7 @@ context model {
             C.vendor.location.localcurrency,
             C.retailPrice,
             C.description,
+            C.recentViews,
             D.id                             as discountid,
             D.startdate,
             D.enddate,
