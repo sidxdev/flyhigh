@@ -130,7 +130,7 @@ sap.ui.define([
 						text: "{description}"
 					}),
 					new sap.m.Text({
-						text: "{bestDiscount}"
+						text: "{bestDiscount} {localcurrency}"
 					})
 				]
 			});

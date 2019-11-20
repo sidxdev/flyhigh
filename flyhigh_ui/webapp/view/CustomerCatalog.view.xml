@@ -21,7 +21,7 @@
 								<Column hAlign="Center"><Text text="Model"/></Column>
 								<Column hAlign="Center"><Text text="Price"/></Column>
 								<Column hAlign="Center"><Text text="Desc."/></Column>
-								<Column hAlign="Center"><Text text="Disc."/></Column>
+								<Column hAlign="Center"><Text text="Best Disc."/></Column>
 							</columns>
 							<items/>
 						</Table>
