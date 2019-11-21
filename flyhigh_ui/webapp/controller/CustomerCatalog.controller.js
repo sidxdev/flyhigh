@@ -79,6 +79,8 @@ sap.ui.define([
 						oRow.discounts = [oRow];
 						oRow.discountCount = 1;
 						oRow.bestDiscount = oRow.discountPrice;
+					} else {
+						oRow.bestDiscount = oRow.retailPrice;
 					}
 					aAgg.push(oRow);
 				} else {
