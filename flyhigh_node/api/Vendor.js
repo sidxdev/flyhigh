@@ -63,10 +63,11 @@ router.post("/catalog", (req, res) => {
 	}
 	let uuid = uuidv4();
 	dbHelper.getUserFromEmail(req.db, "Vendor", req.authInfo.userInfo.email).then(user => {
-		return dbHelper.query(req.db, "INSERT INTO \"model.Catalog\" VALUES(?, ?, ?, ?, ?, ?)", [uuid, req.body.model, req.body.category,
+		return dbHelper.query(req.db, "INSERT INTO \"model.Catalog\" VALUES(?, ?, ?, ?, ?, ?, ?)", [uuid, req.body.model, req.body.category,
 			user.id,
 			req.body.retailPrice,
-			req.body.description
+			req.body.description,
+			Math.floor(Math.random() * 100)
 		]);
 	}).then(() => {
 		res.status(201).send({});
