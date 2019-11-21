@@ -10,7 +10,7 @@
 				<Label text="Percentage Discount" required="true"/>
 				<Input id="inputPerDisc" type="Number" required="true" change="onChangeInput"/>
 				<Label id="addVendorPassengerDiscountFlightid" visible="false"/>
-				<Table id="addVendorPassengerDiscountTableContainer" mode="MultiSelect" fixedLayout="false">
+				<Table id="addVendorPassengerDiscountTableContainer" mode="MultiSelect">
 					<columns>
 						<Column hAlign="Center"><Text text="Model"/></Column>
 						<Column hAlign="Center"><Text text="Price"/></Column>

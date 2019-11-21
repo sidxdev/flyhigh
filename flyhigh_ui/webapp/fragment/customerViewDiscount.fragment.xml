@@ -22,7 +22,7 @@
 			</c:VBSpan>
 		</content>
 		<beginButton>
-			<Button text="OK" press="onViewItemDiscountsButton"/>
+			<Button text="Deliver at Gate" press="onViewItemDiscountsButton"/>
 		</beginButton>
 		<endButton>
 			<Button text="Buy"/>
