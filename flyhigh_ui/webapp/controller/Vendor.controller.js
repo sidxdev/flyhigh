@@ -22,7 +22,7 @@ sap.ui.define([
 			// Initialize data
 			Service.get("/api/vendor/self").then(function (oSelfData) {
 				sSelfLocation = oSelfData.data['location.iata'];
-				oWelcomeTitle.setText(`Welcome ${oSelfData.userInfo.givenName}! You are at ${sSelfLocation}`);
+				oWelcomeTitle.setText(`Welcome ${oSelfData.userInfo.familyName}! You are at ${sSelfLocation}`);
 			}).catch(function (err) {});
 
 			// Load Counts
